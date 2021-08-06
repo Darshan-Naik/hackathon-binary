@@ -33,7 +33,7 @@ function Register() {
     dispatch(registerRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/mentor/signup",
+      url: "http://localhost:8000/students/signup",
       header: {
         "Content-Type": "application/json",
       },

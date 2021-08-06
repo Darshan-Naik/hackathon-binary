@@ -33,7 +33,7 @@ function Login() {
     dispatch(loginRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/mentor/login",
+      url: "http://localhost:8000/students/login",
       header: {
         "Content-Type": "application/json",
       },
