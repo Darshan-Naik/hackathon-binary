@@ -1,13 +1,50 @@
+:root {
+  --primary-1: #1479ff;
+  --primary-2: #14a5ff;
+  --primary-3: #37dbe6;
+
+  --primary-background: #fff;
+  --secondary-background-1: #f8fbff;
+  --secondary-background-2: #e6f1ff;
+
+  --hover-overlay: rgba(0, 0, 0, 0.05);
+  --shadow-1: rgba(0, 0, 0, 0.1);
+  --shadow-2: rgba(0, 0, 0, 0.2);
+  --shadow-5: rgba(0, 0, 0, 0.5);
+  --shadow-8: rgba(0, 0, 0, 0.8);
+
+  --primary-icon: #193b68;
+  --primary-text: #193b68;
+
+  --secondary-icon: #9eacbf;
+  --secondary-text: #9eacbf;
+
+  --black: #000;
+  --white: #fff;
+
+  --navBar-height: 50px;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.34;
+  background-color: var(--secondary-background-2);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--primary-text);
+  font-size: 16px;
+}
+input,
+button,
+textarea {
+  outline: none;
+}
+button{
+  cursor: pointer;
 }
