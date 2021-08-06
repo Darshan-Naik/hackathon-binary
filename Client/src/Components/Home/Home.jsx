@@ -8,16 +8,13 @@ function Home() {
   return (
     <section className="home-container">
       <div className="banner-box flex">
-        <img
-          src="https://codecanyon.img.customer.envatousercontent.com/files/342540447/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=87695d92d7b188c684bbecf84e7ce000"
-          alt="banner"
-        />
+        <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="banner" />
       </div>
       <div className="main-search-container flex">
         <div className="main-search-box">
           <p>Search for career</p>
           <div className="main-search flex">
-            <SearchIcon/>
+            <SearchIcon />
             <input type="text" placeholder="Search" />
             <button className="search-btn">Search</button>
           </div>
