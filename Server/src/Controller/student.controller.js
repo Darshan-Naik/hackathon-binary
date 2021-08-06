@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 // To get a student based on the provided email;
-router.get('/', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
 
         let student = await Student.findOne({ email: req.body.email }).lean().exec();
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 });
 
 // To create a new student;
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
 
         let studentCreated = await Student.create(req.body);
