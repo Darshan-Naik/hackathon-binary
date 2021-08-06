@@ -1,0 +1,115 @@
+.home-container {
+  min-height: calc(95vh - var(--navBar-height));
+  background-color: var(--secondary-background-2);
+}
+.banner-box {
+  height: 35vh;
+  overflow: hidden;
+  padding: 100px auto;
+  background-color: var(--secondary-background-1);
+  margin: 15px 0;
+}
+.banner-box img {
+  height: 100%;
+}
+.main-search-container {
+  flex-direction: column;
+  margin: 20px;
+}
+.main-search-box {
+  width: 40%;
+  padding: 20px 30px;
+  min-width: 350px;
+  background-color: var(--secondary-background-1);
+  box-shadow: 0px 0px 25px var(--shadow-2);
+  border-radius: 15px;
+  border: 2px solid var(--primary-3);
+}
+.main-search-box p {
+  font-weight: 600;
+  margin: 10px;
+  font-size: 20px;
+}
+.main-search {
+  width: 100%;
+  border: 2px solid var(--primary-1);
+  box-shadow: 0px 0px 5px var(--shadow-2);
+  border-radius: 4px;
+  
+}
+.main-search svg {
+  width: 20px;
+  margin-left: 10px;
+  stroke: var(--primary-1);
+}
+.main-search input {
+  flex: 1;
+}
+.main-search input,
+.main-search button {
+  border: none;
+  padding: 10px;
+  background-color: transparent;
+}
+.main-search button {
+  background-color: var(--primary-1);
+  border: 2px solid var(--primary-1);
+  color: var(--white);
+  font-size: 18px;
+}
+.search-tips {
+  font-size: 20px;
+  justify-content: flex-start;
+  font-size: 16px;
+  color: var(--secondary-text);
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+.search-tips > p {
+  font-size: 16px;
+  color: var(--secondary-text);
+  font-weight: 500;
+}
+.career-cards-container {
+  flex-direction: column;
+}
+.career-cards-container > h2 {
+  margin: 10px;
+  font-size: 20px;
+  position: relative;
+}
+.career-cards-container > h2::after {
+  content: "";
+  width: 50px;
+  height: 5px;
+  background-color: var(--primary-text);
+  position: absolute;
+  right: -60px;
+  top: 50%;
+  border-radius: 50px;
+}
+.career-cards-container > h2::before {
+  content: "";
+  width: 50px;
+  height: 5px;
+  background-color: var(--primary-text);
+  position: absolute;
+  left: -60px;
+  top: 50%;
+  border-radius: 50px;
+}
+.career-card {
+  width: 180px;
+  height: 250px;
+  background-color: var(--secondary-background-1);
+  border: 2px solid var(--primary-3);
+  margin: 10px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 25px var(--shadow-2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.career-card:hover {
+  transform: scale(1.05);
+  border: 2px solid var(--primary-1);
+}

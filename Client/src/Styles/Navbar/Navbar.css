@@ -1,0 +1,24 @@
+.nav-container {
+  height: var(--navBar-height);
+  background-color: var(--primary-background);
+  justify-content: space-between;
+  padding:0 50px;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 0px 10px var(--shadow-5);
+}
+.logo-container img {
+  height: 40px;
+}
+.login-button-container button{
+    padding: 8px 15px;
+    border: none;
+    font-weight: 600;
+    background-color:  var(--primary-1);
+    color:  var(--white);
+    border-radius: 4px;
+    box-shadow: 0px 0px 10px var(--primary-shadow);
+}
