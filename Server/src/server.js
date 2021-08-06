@@ -5,6 +5,7 @@ const blogController = require("./Controller/blog.controller");
 const studentController = require("./Controller/student.controller");
 const { signUp, logIn } = require('./Controller/mentorAuth.controller');
 const newsController = require("./Controller/news.controller");
+const category = require("./Controller/categories.controller");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors({
 
 app.use(express.json());
 
+app.use("/category", category);
 app.use("/mentor/signup", signUp);
 app.use("/mentor/login", logIn);
 
