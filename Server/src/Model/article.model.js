@@ -4,6 +4,7 @@ const articleSchema = new Schema(
     {
         title: { type: String, required: true },
         body: { type: String, required: true },
+        category: { type: String, required: true },
         likes: [
             { type: Number }
         ],

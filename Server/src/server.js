@@ -4,6 +4,7 @@ const articleController = require("./Controller/article.controller");
 const blogController = require("./Controller/blog.controller");
 const studentController = require("./Controller/student.controller");
 const { signUp, logIn } = require('./Controller/mentorAuth.controller');
+const newsController = require("./Controller/news.controller");
 
 const app = express();
 
@@ -20,5 +21,7 @@ app.use("/mentor/login", logIn);
 app.use('/students', studentController);
 app.use('/blogs', blogController);
 app.use('/articles', articleController);
+
+app.use('/news', newsController)
 
 module.exports = app;
