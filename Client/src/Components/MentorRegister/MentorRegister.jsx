@@ -11,12 +11,13 @@ import { Link } from "react-router-dom";
 const initState = {
   name: "",
   email: "",
+  specialization: "",
   password: "",
 };
 
-function Register() {
+function MentorRegister() {
   const [data, setData] = React.useState(initState);
-  const { name, email, password } = data;
+  const { name, email, specialization, password } = data;
 
   const dispatch = useDispatch();
 
@@ -34,7 +35,7 @@ function Register() {
     dispatch(registerRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/students/signup",
+      url: "http://localhost:8000/mentor/signup",
       header: {
         "Content-Type": "application/json",
       },
@@ -68,6 +69,14 @@ function Register() {
             onChange={handleChange}
           />
           <input
+            type="specialization"
+            name="specialization"
+            value={specialization}
+            placeholder="Specialization"
+            required
+            onChange={handleChange}
+          />
+          <input
             type="password"
             name="password"
             value={password}
@@ -86,4 +95,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default MentorRegister;
