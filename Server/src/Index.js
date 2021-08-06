@@ -1,13 +1,11 @@
-const express = require("express");
-const articleController = require("./Controller/article.controller");
-const blogController = require("./Controller/blog.controller");
-const studentController = require("./Controller/student.controller");
-const app = express();
+const app = require("./server.js");
+const connect = require("./Config/db")
 
-app.use(express.json());
+const start = async () => {
+    await connect();
+    app.listen(8000, () => {
+        console.log(`Listening to port 8000`);
+    })
+}
 
-app.use('/students', studentController);
-app.use('/blogs', blogController);
-app.use('/articles', articleController);
-
-module.exports = app;
+start();
