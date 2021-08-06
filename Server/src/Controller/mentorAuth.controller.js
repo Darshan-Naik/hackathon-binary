@@ -20,10 +20,10 @@ const logIn = async (req, res) => {
             return res.status(401).json({message: "Please check your email and password"});
         }
 
-        //console.log(exist)
+        //console.log(exist, exist[0].password==req.body.password)
         
-        if(exist.password==req.body.password){
-            //console.log("hello")
+        if(exist[0].password==req.body.password){
+            
             return res.status(202).json({data: exist});
         } else {
             return res.status(401).json({message: "Please check your email and password"});
