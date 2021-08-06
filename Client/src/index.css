@@ -8,6 +8,7 @@
   --secondary-background-2: #e6f1ff;
 
   --hover-overlay: rgba(0, 0, 0, 0.05);
+  --primary-shadow: #147aff93;
   --shadow-1: rgba(0, 0, 0, 0.1);
   --shadow-2: rgba(0, 0, 0, 0.2);
   --shadow-5: rgba(0, 0, 0, 0.5);
@@ -22,7 +23,7 @@
   --black: #000;
   --white: #fff;
 
-  --navBar-height: 50px;
+  --navBar-height: 60px;
 }
 body {
   margin: 0;
@@ -47,4 +48,8 @@ textarea {
 }
 button{
   cursor: pointer;
+}
+svg{
+  fill: var(--primary-icon);
+  stroke: var(--primary-icon);
 }
