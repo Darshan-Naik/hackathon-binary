@@ -1,15 +1,73 @@
 import React from "react";
 import "../../Styles/Register/Register.css";
+import axios from "axios";
+const initState = {
+  name: "",
+  email: "",
+  password: "",
+};
+
 function Register() {
+  const [data, setData] = React.useState(initState);
+  const { name, email, password } = data;
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let payload = {
+      ...data,
+      [name]: value,
+    };
+    setData(payload);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //dispatch(loginRequest());
+    const requestParam = {
+      method: "post",
+      url: "",
+      header: {
+        "Content-Type": "application/json",
+      },
+      data,
+    };
+    axios(requestParam)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="register-container flex">
+      <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
       <h2>Register</h2>
-      <form action="">
+      <form action="" onSubmit={handleSubmit}>
         <div className="register-form-box flex">
-          <input type="text" placeholder="Full Name" required />
-          <input type="mail" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-          <button className="register-bottom">Register</button>
+          <input
+            name="name"
+            value={name}
+            type="text"
+            placeholder="Full Name"
+            required
+            onChange={handleChange}
+          />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Email"
+            required
+            onChange={handleChange}
+          />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            required
+            onChange={handleChange}
+          />
+          <button type="submit" className="register-bottom">
+            Register
+          </button>
         </div>
       </form>
     </div>

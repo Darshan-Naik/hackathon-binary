@@ -4,7 +4,8 @@ import "../../Styles/Login/Login.css";
 function Login() {
   return (
     <div className="login-container flex">
-      <p className="login-container-p">Login</p>
+      <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
+      <h2>Login</h2>
       <form action="">
         <div className="login-form-box flex">
           <input type="email" placeholder="Email" required />
