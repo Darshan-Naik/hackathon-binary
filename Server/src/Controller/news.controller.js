@@ -9,12 +9,12 @@ router.get('/', async (req, res) => {
         let allNews;
         if (query) {
 
-            allNews = await News.find({ "category": { $eq: query.toLowerCase() } }).sort({ "dateTime": -1 }).lean().exec();
+            allNews = await News.find({ "category": { $eq: query.toLowerCase() } }).sort({ "createdAt": -1 }).lean().exec();
 
             return res.status(200).json({ data: allNews });
         }
 
-        allNews = await News.find().sort({ "dateTime": -1 }).lean().exec();
+        allNews = await News.find().sort({ "createdAt": -1 }).lean().exec();
 
         return res.status(200).json({ data: allNews });
 
