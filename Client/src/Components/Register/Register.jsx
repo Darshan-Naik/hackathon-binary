@@ -1,6 +1,12 @@
 import React from "react";
 import "../../Styles/Register/Register.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import {
+  registerFailure,
+  registerRequest,
+  registerSuccess,
+} from "../../Redux/Auth/action";
 const initState = {
   name: "",
   email: "",
@@ -10,6 +16,9 @@ const initState = {
 function Register() {
   const [data, setData] = React.useState(initState);
   const { name, email, password } = data;
+
+  const dispatch = useDispatch();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     let payload = {
@@ -21,18 +30,18 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //dispatch(loginRequest());
+    dispatch(registerRequest());
     const requestParam = {
       method: "post",
-      url: "",
+      url: "http://localhost:8000/mentor/signup",
       header: {
         "Content-Type": "application/json",
       },
       data,
     };
     axios(requestParam)
-      .then((response) => console.log(response))
-      .catch((err) => console.log(err));
+      .then((response) => dispatch(registerSuccess("Register Successfully")))
+      .catch((err) => dispatch(registerFailure(err)));
   };
 
   return (

@@ -1,11 +1,24 @@
-const app = require(".");
-const connect = require("./Config/db")
+const express = require("express");
+const cors = require("cors");
+const articleController = require("./Controller/article.controller");
+const blogController = require("./Controller/blog.controller");
+const studentController = require("./Controller/student.controller");
+const { signUp, logIn } = require('./Controller/mentorAuth.controller');
 
-const start = async () => {
-    await connect();
-    app.listen(8000, () => {
-        console.log(`Listening to port 8002`);
-    })
-}
+const app = express();
 
-start();
+app.use(cors({
+    origin: "http://localhost:3000"
+    // origin:"*"
+}));
+
+app.use(express.json());
+
+app.use("/mentor/signup", signUp);
+app.use("/mentor/login", logIn);
+
+app.use('/students', studentController);
+app.use('/blogs', blogController);
+app.use('/articles', articleController);
+
+module.exports = app;
