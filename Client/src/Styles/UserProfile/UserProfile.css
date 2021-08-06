@@ -1,0 +1,88 @@
+.profile-container {
+  width: 75%;
+  margin: auto;
+  margin-top: 100px;
+  border: 1px solid black;
+  justify-content: space-between;
+}
+.profile-left-box {
+  width: 25%;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.profile-left-box img {
+  width: 250px;
+  height: 250px;
+}
+.profile-work {
+  flex-direction: column;
+}
+.profile-work > small {
+  color: var(--secondary-text);
+  font-weight: 600;
+  font-size: 12px;
+  position: relative;
+  margin-bottom: 30px;
+}
+.profile-work > small::after {
+  content: "";
+  width: 90px;
+  height: 1px;
+  background-color: var(--secondary-text);
+  position: absolute;
+  right: -90px;
+  top: 70%;
+  border-radius: 50px;
+}
+.profile-work h2 {
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 16px;
+}
+.profile-work p {
+  color: var(--secondary-text);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.profile-work samp {
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.profile-right-box {
+  width: 75%;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid black;
+}
+.profile-right-box h2 {
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 22px;
+}
+.profile-right-box p {
+  color: var(--primary-1);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.profile-right-box > small {
+  color: var(--secondary-text);
+  font-weight: 600;
+  font-size: 12px;
+  position: relative;
+  margin-bottom: 30px;
+}
+.profile-button {
+  width: 100%;
+  height: 40px;
+  margin-top: 25px;
+  border-radius: 4px;
+  border: none;
+  color: var(--white);
+  background: var(--primary-1);
+  box-shadow: 0px 0px 10px var(--primary-shadow);
+  margin: 0px 5px;
+}
