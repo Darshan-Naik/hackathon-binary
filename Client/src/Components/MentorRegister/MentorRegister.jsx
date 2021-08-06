@@ -90,7 +90,7 @@ function MentorRegister() {
         </div>
       </form>
       <small>Already have an account? </small>
-      <Link to="/login">Login</Link>
+      <Link to="/mentor-login">Login</Link>
     </div>
   );
 }
