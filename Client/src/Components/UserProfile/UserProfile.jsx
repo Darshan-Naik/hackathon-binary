@@ -3,8 +3,13 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import "../../Styles/UserProfile/UserProfile.css";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
+import { useSelector } from "react-redux";
+import DateTimePicker from "react-datetime-picker";
 function UserProfile() {
   const [data, setData] = React.useState({});
+  const [value, onChange] = React.useState(new Date());
+  const user = useSelector((state) => state.auth.user);
+  const userId = user.data.data._id;
   const {
     profilePic,
     company,
@@ -73,13 +78,15 @@ function UserProfile() {
               <p>{jobTitle || "Designation"}</p>
             </div>
 
-            <button className="edit-button flex">
-              <img
-                src={process.env.PUBLIC_URL + "/Images/edite_icon.png"}
-                alt="edit_logo"
-              />
-              Edit detail
-            </button>
+            {id === userId && (
+              <button className="edit-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/edite_icon.png"}
+                  alt="edit_logo"
+                />
+                Edit detail
+              </button>
+            )}
           </div>
 
           <div className="ranking flex">
@@ -109,6 +116,9 @@ function UserProfile() {
               />
               Make meeting
             </button>
+            <div>
+              <DateTimePicker onChange={onChange} value={value} />
+            </div>
             <button className="profile-button flex">
               <img
                 src={process.env.PUBLIC_URL + "/Images/report_icon.png"}

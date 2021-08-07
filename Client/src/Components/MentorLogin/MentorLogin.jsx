@@ -16,7 +16,7 @@ const initState = {
 function MentorLogin() {
   const [data, setData] = React.useState(initState);
   const { email, password } = data;
-  const isAuth = useSelector((state) => state.auth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -44,11 +44,13 @@ function MentorLogin() {
       .catch((err) => dispatch(loginFailure(err)));
   };
 
-  return (
+  return isAuth ? (
+    <Redirect to="/" push />
+  ) : (
     <section className="login-container-main flex">
       <div className="login-container flex">
         <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
-        <h2>Login</h2>
+        <h2>Mentor Login </h2>
         <form action="" onSubmit={handleSubmit}>
           <div className="login-form-box flex">
             <input
