@@ -16,6 +16,7 @@ const initState = {
 
 function MentorLogin() {
   const [data, setData] = React.useState(initState);
+  const [error, setError] = React.useState(false);
   const { email, password } = data;
   const isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
@@ -41,11 +42,14 @@ function MentorLogin() {
       data,
     };
     axios(requestParam)
-      .then((response) =>{
-         dispatch(loginSuccess(response.data.data[0]))
-          dispatch(updateMentor(true));
-        })
-      .catch((err) => dispatch(loginFailure(err)));
+      .then((response) => {
+        dispatch(loginSuccess(response.data.data[0]));
+        dispatch(updateMentor(true));
+      })
+      .catch((err) => {
+        dispatch(loginFailure(err));
+        setError("Invalid email or password!");
+      });
   };
 
   return isAuth ? (
@@ -73,6 +77,7 @@ function MentorLogin() {
               placeholder="Password"
               required
             />
+            <samp className="error">{error}</samp>
             <button type="submit" className="login-bottom">
               Login
             </button>

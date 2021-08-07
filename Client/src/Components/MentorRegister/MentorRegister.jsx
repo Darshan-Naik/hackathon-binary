@@ -18,8 +18,9 @@ const initState = {
 
 function MentorRegister() {
   const [data, setData] = React.useState(initState);
+  const [error, setError] = React.useState("");
   const { name, email, specialization, password } = data;
-
+  //console.log(error);
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -43,12 +44,14 @@ function MentorRegister() {
       data,
     };
     axios(requestParam)
-      .then((response) =>{
-        
-        dispatch(registerSuccess(response.data))
+      .then((response) => {
+        dispatch(registerSuccess(response.data));
         dispatch(updateMentor(true));
       })
-      .catch((err) => dispatch(registerFailure(err)));
+      .catch((err) => {
+        dispatch(registerFailure(err));
+        setError("Password must contain 6 character!");
+      });
   };
 
   return (
@@ -90,6 +93,7 @@ function MentorRegister() {
               required
               onChange={handleChange}
             />
+            <samp className="error">{error}</samp>
             <button type="submit" className="register-bottom">
               Register
             </button>
