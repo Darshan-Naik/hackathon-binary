@@ -24,13 +24,15 @@ function UserProfile() {
       <div className="profile-right-box flex">
         <h2>Jon Snow</h2>
         <p>Full Stack Developer</p>
+        <div className="ranking">
+          <small>RANKING</small>
+        </div>
 
-        <small>RANKING</small>
-
-        <div className="flex">
+        <div className="profile-button-main flex">
           <button className="profile-button flex">Send message</button>
           <button className="profile-button flex">Make Meeting</button>
         </div>
+        <div className="line"></div>
         <small>CONTACT INFORMATION</small>
         <small>BASIC INFORMATION</small>
       </div>
