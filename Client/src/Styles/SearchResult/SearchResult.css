@@ -14,18 +14,32 @@
   align-items: flex-start;
 }
 .search-result-container {
-  text-align: center;
   flex: 3;
   max-height: calc(100vh - var(--navBar-height));
   overflow: auto;
 }
 .search-result-container > h1 {
   margin: 10px;
+  margin-left: 50px;
+  font-size: 20px;
+}
+.mentors-container >h1 {
+  margin: 10px;
   font-size: 20px;
 }
 .news-box > * {
   margin: 10px;
 }
+.news-container{
+    position: relative;
+}
+.news-container .stamp{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--shadow-2);
+}
+
 .news-container img {
   width: 40%;
   margin: 10px;
@@ -75,18 +89,27 @@
   margin-bottom: 0;
 }
 .category-card .progress {
-  top: -10px;
-  left: 90%;
-  width: 200px;
-  height: 200px;
+  top: 120px;
+  left: 80%;
+  width: 100px;
+  height: 100px;
 }
 .category-card .progress .progress-text {
-  top: 60px;
-  left: 55px;
+  top: 45px;
+  left: 75px;
   font-size: 14px;
 }
 .category-card .progress .progress-text p {
   font-size: 14px;
+}
+.category-card strong{
+    color: var(--secondary-text);
+    font-weight: 500;
+    margin: 10px;
+}
+.category-card q{
+    font-weight: 500;
+    margin: 10px;
 }
 .mentors-container {
   flex: 1;
@@ -120,7 +143,9 @@
 }
 .mentor-card img{
     width: 50px;
+    border: 1px solid var(--primary-1);
     height: 50px;
+    object-fit: cover;
     border-radius: 50%;
     margin: 10px;
     align-self: flex-start;

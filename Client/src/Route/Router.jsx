@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import Peer from "simple-peer";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import MentorLogin from "../Components/MentorLogin/MentorLogin";
@@ -8,10 +9,108 @@ import Navbar from "../Components/Navbar/Navbar";
 import Register from "../Components/Register/Register";
 import UserProfile from "../Components/UserProfile/UserProfile";
 import SearchResult from "../Components/SearchResult/SearchResult";
-function Router() {
+import VideoConference from "../Components/VideoConference/VideoConference";
+
+function Router({socket}) {
+const [callState, setCallState] = React.useState(false);
+const [loadState, setLoadState] = React.useState(false);
+const [stream, setStream] = React.useState();
+const [receivingCall, setReceivingCall] = React.useState(false);
+const [caller, setCaller] = React.useState("");
+const [callerName, setCallerName] = React.useState("");
+const [callerSignal, setCallerSignal] = React.useState();
+const [callAccepted, setCallAccepted] = React.useState(false);
+const [callEnded, setCallEnded] = React.useState(false);
+const myVideo = React.useRef();
+const userVideo = React.useRef();
+const connectionRef = React.useRef();
+React.useEffect(() => {
+  if (socket && loadState) {
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((stream) => {
+        setStream(stream);
+        myVideo.current.srcObject = stream;
+      });
+    socket.on("callUser", (data) => {
+      console.log("callUser", data);
+      setReceivingCall(true);
+      setCaller(data.from);
+      setCallerName(data.name);
+      setCallerSignal(data.signal);
+    });
+  }
+}, [socket, loadState]);
+const callUser = (connect, username) => {
+  setCallState(true);
+  const peer = new Peer({
+    initiator: true,
+    trickle: false,
+    stream: stream,
+  });
+  peer.on("signal", (data) => {
+    socket.emit("callUser", {
+      userToCall: connect,
+      signalData: data,
+      from: socket.id,
+      name: username,
+    });
+  });
+  peer.on("stream", (stream) => {
+    userVideo.current.srcObject = stream;
+  });
+  socket.on("callAccepted", (signal) => {
+    setCallAccepted(true);
+    peer.signal(signal);
+  });
+
+  connectionRef.current = peer;
+};
+const answerCall = () => {
+  setCallAccepted(true);
+  const peer = new Peer({
+    initiator: false,
+    trickle: false,
+    stream: stream,
+  });
+  peer.on("signal", (data) => {
+    socket.emit("answerCall", { signal: data, to: caller });
+  });
+  peer.on("stream", (stream) => {
+    userVideo.current.srcObject = stream;
+  });
+
+  peer.signal(callerSignal);
+  connectionRef.current = peer;
+};
+
+const leaveCall = () => {
+  setCallEnded(true);
+  setCallState(false);
+  connectionRef.current.destroy();
+};
+
+const handleCall = (caller,name) => {
+    callUser(caller,name)
+    setCallState(true)
+}
+
   return (
     <>
       <Navbar />
+      <VideoConference
+        setLoadState={setLoadState}
+        stream={stream}
+        myVideo={myVideo}
+        callAccepted={callAccepted}
+        callEnded={callEnded}
+        leaveCall={leaveCall}
+        userVideo={userVideo}
+        receivingCall={receivingCall}
+        callerName={callerName}
+        answerCall={answerCall}
+        callState={callState}
+      />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -31,8 +130,8 @@ function Router() {
         <Route exact path="/mentor-register">
           <MentorRegister />
         </Route>
-        <Route exact path="/user-profile/:type/:id">
-          <UserProfile />
+        <Route exact path="/profile/:type/:id">
+          <UserProfile socket={socket} handleCall={handleCall} />
         </Route>
       </Switch>
     </>

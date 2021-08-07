@@ -2,6 +2,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
@@ -13,7 +14,12 @@ export const loginRequest = (payload) => {
     payload,
   };
 };
-
+export const logOut = (payload) => {
+  return {
+    type: LOGOUT,
+    payload,
+  };
+};
 export const loginSuccess = (payload) => {
   return {
     type: LOGIN_SUCCESS,
