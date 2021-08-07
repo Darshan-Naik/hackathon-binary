@@ -5,10 +5,12 @@
 }
 
 .profile-container {
-  width: 55%;
+  width: 90%;
+  padding:50px 20px;
+  max-width: 1300px;
   margin: auto;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .profile-left-box {
   width: 25%;
@@ -20,6 +22,8 @@
 .profile-left-box img {
   width: 250px;
   height: 250px;
+  margin-top: 8px;
+  margin-bottom: 20px;
 }
 .profile-work {
   width: 100%;
@@ -29,8 +33,7 @@
 }
 .profile-work > small {
   color: var(--secondary-text);
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: 500;
   position: relative;
   margin: 20px 0px 10px 0px;
 }
@@ -46,18 +49,16 @@
 }
 .profile-work h2 {
   color: var(--primary-text);
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 500;
 }
 .profile-work p {
   color: var(--secondary-text);
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: 500;
 }
 
 .profile-work samp {
   color: var(--primary-text);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
 }
 
@@ -69,26 +70,29 @@
 }
 .profile-right-box h2 {
   color: var(--primary-text);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 22px;
 }
 .profile-right-box p {
   color: var(--primary-1);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .profile-right-box small {
   color: var(--secondary-text);
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: 500;
+  font-size: 14px;
   position: relative;
   margin-bottom: 5px;
   margin-top: 10px;
 }
 .profile-right-box samp {
-  font-size: 12px;
+  font-size: 14px;
   flex: 1;
+}
+.profile-button-main{
+  margin-bottom: 18px;
 }
 .profile-heading {
   width: 100%;
@@ -99,8 +103,6 @@
   align-items: flex-start;
 }
 .edit-button {
-  height: 30px;
-  width: 100px;
   margin-top: 25px;
   border-radius: 4px;
   border: none;
@@ -108,8 +110,8 @@
   background: var(--secondary-text);
   box-shadow: 0px 0px 10px var(--shadow-2);
   margin: 20px 5px;
-  padding: 5px 5px;
-  font-size: 12px;
+  padding: 8px 12px;
+  font-size: 14px;
   transition: all 0.3s;
 }
 .edit-button img {

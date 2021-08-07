@@ -12,6 +12,7 @@
 }
 .logo-container img {
   height: 40px;
+  cursor: pointer;
 }
 .login-button-container button{
     padding: 8px 15px;
