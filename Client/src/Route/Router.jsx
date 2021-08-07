@@ -2,8 +2,11 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
+import MentorLogin from "../Components/MentorLogin/MentorLogin";
+import MentorRegister from "../Components/MentorRegister/MentorRegister";
 import Navbar from "../Components/Navbar/Navbar";
 import Register from "../Components/Register/Register";
+import SearchResult from "../Components/SearchResult/SearchResult";
 function Router() {
   return (
     <>
@@ -17,6 +20,16 @@ function Router() {
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route exact path="/search/:query">
+          <Navbar />
+          <SearchResult />
+        </Route>
+        <Route exact path="/mentor-login">
+          <MentorLogin />
+        </Route>
+        <Route exact path="/mentor-register">
+          <MentorRegister />
         </Route>
       </Switch>
     </>
