@@ -1,16 +1,18 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "../../Styles/UserProfile/UserProfile.css";
-import { ReactComponent as StarIcon } from "../../Icons/star.svg";
-import { useSelector } from "react-redux";
+import ChatBox from "../ChatBox/ChatBox";
 
 
 function UserProfile({ handleCall }) {
   const [data, setData] = React.useState({});
+  const [chatBoxVisibility, setChatBoxVisibility] = useState(false);
 
   const user = useSelector((state) => state.auth.user);
   const userId = user._id;
+
   const {
     profilePic,
     company,
@@ -107,14 +109,14 @@ function UserProfile({ handleCall }) {
           </div>
 
           <div className="profile-button-main flex">
-            <button className="profile-button flex">
+            <button className="profile-button flex" onClick={() => setChatBoxVisibility(!chatBoxVisibility)}>
               <img
                 src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
                 alt="message_logo"
               />
               Send message
             </button>
-            <button className="profile-button flex" onClick={() => handleCall(connect,user.name)}>
+            <button className="profile-button flex" onClick={() => handleCall(connect, user.name)}>
               <img
                 src={process.env.PUBLIC_URL + "/Images/calender_icon.png"}
                 alt="meeting_logo"
@@ -156,6 +158,9 @@ function UserProfile({ handleCall }) {
           </div>
         </div>
       </div>
+      {
+        chatBoxVisibility && <ChatBox mentor={_id} student={userId} author={name} name={user.name} profilePic={profilePic} setChatBoxVisibility={setChatBoxVisibility} />
+      }
     </section>
   );
 }

@@ -3,32 +3,39 @@ const ChatBox = require("../Model/chatbox.model");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-    let {mentor, student} = req.body;
-    //console.log(mentorId, studentId);
+
+    let { sender, receiver } = req.query;
+
     const toData = await ChatBox.findOne({
-      authors: { $all: [mentor, student] },
+        authors: { $all: [sender, receiver] },
     });
-    return res.status(201).send({ data: toData||[] });
+
+    return res.status(201).send({ data: toData.messages || [] });
 });
-  
+
 router.post("/", async (req, res) => {
-    const {mentor, student,text,author,time,name} = req.body;
+
+    const { mentor, student, text, authorId, time, name } = req.body;
+
     const payload = {
         text,
         name,
-        authorId: author,
+        authorId,
         time
     }
+
     const toData = await ChatBox.findOne({
-      authors: { $all: [mentor, student] },
+        authors: { $all: [mentor, student] },
     });
-    if(toData){
-        await ChatBox.findOneAndUpdate({ _id: toData._id }, 
-        { $push: { messages: payload  } })
+
+    if (toData) {
+        await ChatBox.findOneAndUpdate({ _id: toData._id },
+            { $push: { messages: payload } })
     } else {
-        await ChatBox.create({authors: [mentor, student], messages: [payload]});
+        await ChatBox.create({ authors: [mentor, student], messages: [payload] });
     }
-    return res.status(201).send({status: "sent"});
+
+    return res.status(201).send({ status: "sent" });
 });
-  
+
 module.exports = router;
