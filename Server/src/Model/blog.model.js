@@ -4,7 +4,7 @@ const blogSchema = new Schema(
     {
         authorId: {
             type: Schema.Types.ObjectId,
-            ref: 'mentors',
+            ref: 'mentor',
             required: true
         },
         title: { type: String, required: true },
