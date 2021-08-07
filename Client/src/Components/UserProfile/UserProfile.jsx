@@ -4,10 +4,10 @@ import { useParams } from "react-router-dom";
 import "../../Styles/UserProfile/UserProfile.css";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
 import { useSelector } from "react-redux";
-import DateTimePicker from "react-datetime-picker";
+
 function UserProfile() {
   const [data, setData] = React.useState({});
-  const [value, onChange] = React.useState(new Date());
+
   const user = useSelector((state) => state.auth.user);
   const userId = user.data.data._id;
   const {
@@ -33,6 +33,7 @@ function UserProfile() {
         .get("http://localhost:8000/mentors/" + id)
         .then((response) => {
           setData(response.data.data);
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);
@@ -66,9 +67,10 @@ function UserProfile() {
           </div>
           <div className="profile-work flex">
             <small>Skills</small>
-            {specialization.map((el) => (
-              <samp key={el}>{el || "React"}</samp>
-            ))}
+            {specialization &&
+              specialization.map((el) => (
+                <samp key={el}>{el.toUpperCase() || "React"}</samp>
+              ))}
           </div>
         </div>
         <div className="profile-right-box flex">
@@ -91,14 +93,14 @@ function UserProfile() {
 
           <div className="ranking flex">
             <small>RATING</small>
-            {new Array(5).fill(rating).map((el, i) => (
+            {/* {new Array(5).fill(rating).map((el, i) => (
               <p
                 key={el + i}
                 className={rating > i ? "activeStar" : "inactiveStar"}
               >
                 <StarIcon />
               </p>
-            ))}
+            ))} */}
           </div>
 
           <div className="profile-button-main flex">
@@ -116,9 +118,7 @@ function UserProfile() {
               />
               Make meeting
             </button>
-            <div>
-              <DateTimePicker onChange={onChange} value={value} />
-            </div>
+
             <button className="profile-button flex">
               <img
                 src={process.env.PUBLIC_URL + "/Images/report_icon.png"}
