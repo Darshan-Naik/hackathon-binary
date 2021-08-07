@@ -9,7 +9,7 @@ function UserProfile() {
   const [data, setData] = React.useState({});
 
   const user = useSelector((state) => state.auth.user);
-  const userId = user.data.data._id;
+  const userId = user ? user.data.data._id : false;
   const {
     profilePic,
     company,
@@ -33,7 +33,7 @@ function UserProfile() {
         .get("http://localhost:8000/mentors/" + id)
         .then((response) => {
           setData(response.data.data);
-          console.log(response);
+          console.log(response.data.data.rating);
         })
         .catch((error) => {
           console.log(error);
@@ -93,14 +93,16 @@ function UserProfile() {
 
           <div className="ranking flex">
             <small>RATING</small>
-            {/* {new Array(5).fill(rating).map((el, i) => (
-              <p
-                key={el + i}
-                className={rating > i ? "activeStar" : "inactiveStar"}
-              >
-                <StarIcon />
-              </p>
-            ))} */}
+            <div className="profile-stars flex">
+              {new Array(5).fill(0).map((el, i) => (
+                <p
+                  key={el + i}
+                  className={rating > i ? "activeStar" : "inactiveStar"}
+                >
+                  <StarIcon />
+                </p>
+              ))}
+            </div>
           </div>
 
           <div className="profile-button-main flex">
@@ -111,9 +113,9 @@ function UserProfile() {
               />
               Send message
             </button>
-            <button className="profile-button flex">
+            <button className="profile-button profile-button-2 flex">
               <img
-                src={process.env.PUBLIC_URL + "/Images/calender_icon.png"}
+                src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
                 alt="meeting_logo"
               />
               Make meeting
