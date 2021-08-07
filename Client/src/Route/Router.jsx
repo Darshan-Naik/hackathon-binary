@@ -14,7 +14,6 @@ function Router() {
       <Navbar />
       <Switch>
         <Route exact path="/">
-          <Navbar />
           <Home />
         </Route>
         <Route exact path="/login">
@@ -24,7 +23,6 @@ function Router() {
           <Register />
         </Route>
         <Route exact path="/search/:query">
-          <Navbar />
           <SearchResult />
         </Route>
         <Route exact path="/mentor-login">
@@ -34,7 +32,6 @@ function Router() {
           <MentorRegister />
         </Route>
         <Route exact path="/user-profile">
-          <Navbar />
           <UserProfile />
         </Route>
       </Switch>
