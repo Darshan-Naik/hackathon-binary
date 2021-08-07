@@ -1,15 +1,18 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import "../../Styles/UserProfile/UserProfile.css";
+import ChatBox from "../ChatBox/ChatBox";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
-import { useSelector } from "react-redux";
 
 function UserProfile({ handleCall }) {
   const [data, setData] = React.useState({});
+  const [chatBoxVisibility, setChatBoxVisibility] = useState(false);
 
   const user = useSelector((state) => state.auth.user);
   const userId = user._id;
+
   const {
     profilePic,
     company,
@@ -110,7 +113,10 @@ function UserProfile({ handleCall }) {
 
           {id !== userId ? (
             <div className="profile-button-main flex">
-              <button className="profile-button flex">
+              <button
+                className="profile-button flex"
+                onClick={() => setChatBoxVisibility(!chatBoxVisibility)}
+              >
                 <img
                   src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
                   alt="message_logo"
@@ -180,6 +186,16 @@ function UserProfile({ handleCall }) {
           </div>
         </div>
       </div>
+      {chatBoxVisibility && (
+        <ChatBox
+          mentor={_id}
+          student={userId}
+          author={name}
+          name={user.name}
+          profilePic={profilePic}
+          setChatBoxVisibility={setChatBoxVisibility}
+        />
+      )}
     </section>
   );
 }

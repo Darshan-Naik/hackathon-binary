@@ -2,6 +2,7 @@
   width: 100vw;
   min-height: calc(100vh - var(--navBar-height));
   background-color: var(--primary-background);
+  position: relative;
 }
 
 .profile-container {
