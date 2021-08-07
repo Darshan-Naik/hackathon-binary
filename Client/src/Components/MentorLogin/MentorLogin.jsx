@@ -40,7 +40,7 @@ function MentorLogin() {
       data,
     };
     axios(requestParam)
-      .then((response) => dispatch(loginSuccess(response.data.data)))
+      .then((response) => dispatch(loginSuccess(response.data.data[0])))
       .catch((err) => dispatch(loginFailure(err)));
   };
 

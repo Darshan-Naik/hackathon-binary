@@ -3,23 +3,28 @@ import { useSelector } from "react-redux";
 import "./App.css";
 import Router from "./Route/Router";
 import { io } from "socket.io-client";
+import axios from "axios";
 function App() {
    const { isAuth, user } = useSelector((state) => state.auth);
-   const [io, setIo] = React.useState(null);
+   const [client, setClient] = React.useState(null);
 
   React.useEffect(() => {
     if (isAuth) {
-      const socket = io("http://localhost:8000");
-      setIo(socket);
+      const socket = io.connect("http://localhost:8000");
+      
+
       socket.on("connect", (id) => {
-        socket.emit("join", user._id);
+         setClient(socket);
+      });
+      socket.on("me", (id) => {
+          axios.patch("http://localhost:8000/mentors/"+user._id, {connect: id});
       });
     }
   }, [isAuth]);
 
   return (
     <div className="App">
-      <Router socket ={io}/>
+      <Router socket={client} />
     </div>
   );
 }
