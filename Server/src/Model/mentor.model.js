@@ -7,7 +7,8 @@ const mentorSchema = new Schema(
         password: { type: String, require: true, minLength: 6 },
         specialization: [
             { type: String, required: true }
-        ]
+        ],
+        profilePic: { type: String }
     },
     {
         versionKey: false,

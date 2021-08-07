@@ -5,7 +5,13 @@ const router = express.Router();
 router.get('/:id', async (req, res) => {
     try {
 
-        // let authorAppointment;
+        let mentorAppointment = await Appointment.find({ authorId: req.params.id }).populate('authorId').lean().exec();
+
+        if (mentorAppointment.length === 0 || !mentorAppointment) {
+            return res.status(401).json({ status: "Error", message: "No appointments available." });
+        }
+
+        return res.status(200).json({ data: mentorAppointment });
 
     } catch (error) {
         return res.status(500).json({ status: "Failed", message: "Something went wrong." });
