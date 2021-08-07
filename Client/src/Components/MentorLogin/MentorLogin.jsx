@@ -13,7 +13,7 @@ const initState = {
   password: "",
 };
 
-function Login() {
+function MentorLogin() {
   const [data, setData] = React.useState(initState);
   const { email, password } = data;
   const isAuth = useSelector((state) => state.auth);
@@ -33,7 +33,7 @@ function Login() {
     dispatch(loginRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/students/login",
+      url: "http://localhost:8000/mentor/login",
       header: {
         "Content-Type": "application/json",
       },
@@ -72,9 +72,9 @@ function Login() {
         </div>
       </form>
       <small>Don't have an account? </small>
-      <Link to="/register">Register</Link>
+      <Link to="/mentor-register">Register</Link>
     </div>
   );
 }
 
-export default Login;
+export default MentorLogin;

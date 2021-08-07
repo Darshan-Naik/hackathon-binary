@@ -71,3 +71,12 @@
   background: var(--primary-1);
   box-shadow: 0px 0px 10px var(--primary-shadow);
 }
+.login-container small {
+  color: var(--primary-text);
+  font-size: 12px;
+  margin-top: 15px;
+}
+.login-container a {
+  color: var(--primary-1);
+  font-size: 12px;
+}
