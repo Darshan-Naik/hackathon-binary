@@ -15,6 +15,8 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.15",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "socket.io": "^3.1.1",
+    "socket.io-client": "^4.1.3"
   }
 }
