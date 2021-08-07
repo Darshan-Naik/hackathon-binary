@@ -21,11 +21,16 @@ socket.on("connect_error", (err) => {
 
 io.on("connection", (socket) => {
     console.log(socket.id)
-    socket.emit("me", socket.id)
+    
+	socket.emit("me", socket.id)
 
-    socket.on("disconnect", () => {
-        socket.broadcast.emit("callEnded")
-    })
+    socket.on("join", (id) => {
+      socket.id = id;
+    });
+  
+	socket.on("disconnect", () => {
+		socket.broadcast.emit("callEnded")
+	})
 
     socket.on("callUser", (data) => {
         io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })

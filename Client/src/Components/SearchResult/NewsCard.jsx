@@ -14,7 +14,8 @@ function NewsCard({
     
   return (
     <div className="news-container flex">
-      {imageUrl && <img src={imageUrl} className="news-image" alt="news" />}
+        {imageUrl && <img src={imageUrl} className="news-image" alt="news" />}
+
       <div className="news-box">
         <h1>{title}</h1>
         <p>{body}</p>
@@ -45,7 +46,8 @@ function NewsCard({
           </p>
         )}
       </div>
-    </div>  
+      <p className="stamp">{type}</p>
+    </div>
   );
 }
 

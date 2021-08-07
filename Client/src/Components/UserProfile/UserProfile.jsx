@@ -5,11 +5,11 @@ import "../../Styles/UserProfile/UserProfile.css";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
 import { useSelector } from "react-redux";
 
-function UserProfile() {
+function UserProfile({ handleCall }) {
   const [data, setData] = React.useState({});
 
   const user = useSelector((state) => state.auth.user);
-  const userId = user ? user.data.data._id : false;
+  const userId = user._id;
   const {
     profilePic,
     company,
@@ -23,10 +23,12 @@ function UserProfile() {
     email,
     address,
     gender,
+    _id,
+    connect,
   } = data;
 
   const { type, id } = useParams();
-  console.log(id, type);
+
   React.useEffect(() => {
     if (type === "mentor") {
       axios
@@ -113,7 +115,10 @@ function UserProfile() {
               />
               Send message
             </button>
-            <button className="profile-button profile-button-2 flex">
+            <button
+              className="profile-button flex"
+              onClick={() => handleCall(connect, name)}
+            >
               <img
                 src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
                 alt="meeting_logo"

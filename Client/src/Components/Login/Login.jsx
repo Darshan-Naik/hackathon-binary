@@ -40,7 +40,7 @@ function Login() {
       data,
     };
     axios(requestParam)
-      .then((response) => dispatch(loginSuccess(response)))
+      .then((response) => dispatch(loginSuccess(response.data.data)))
       .catch((err) => dispatch(loginFailure(err)));
   };
 

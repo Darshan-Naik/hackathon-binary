@@ -7,9 +7,16 @@
   overflow: hidden;
   padding: 100px auto;
   background-color: var(--secondary-background-1);
+  background-size: cover;
+}
+.banner-box >div {
+  height: 100%;
+  width: 100%;
+  backdrop-filter: blur(4px);
 }
 .banner-box img {
   height: 100%;
+  box-shadow: 0px 0px 50px var(--shadow-8);
 }
 .main-search-container {
   flex-direction: column;
