@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     try {
         let query = req.query.q;
 
-        let blogs = await Blog.find({ "category": { $eq: query.toLowerCase() } }).populate('mentors').sort({ "createdAt": -1 }).lean().exec();
+        let blogs = await Blog.find({ "category": { $eq: query.toLowerCase() } }).populate('authorId').sort({ "createdAt": -1 }).lean().exec();
         let articles = await Article.find({ "category": query.toLowerCase() }).sort({ "createdAt": -1 }).lean().exec();
         let news = await News.find({ "category": query.toLowerCase() }).sort({ "createdAt": -1 }).lean().exec();
 

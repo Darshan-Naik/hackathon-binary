@@ -4,6 +4,7 @@ import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import Navbar from "../Components/Navbar/Navbar";
 import Register from "../Components/Register/Register";
+import SearchResult from "../Components/SearchResult/SearchResult";
 function Router() {
   return (
     <>
@@ -17,6 +18,10 @@ function Router() {
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route exact path="/search/:query">
+          <Navbar />
+          <SearchResult />
         </Route>
       </Switch>
     </>
