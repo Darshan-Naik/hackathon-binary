@@ -2,7 +2,7 @@ import React from "react";
 import "../../Styles/UserProfile/UserProfile.css";
 function UserProfile() {
   return (
-    <section className="profile-container-main flex">
+    <section className="profile-container-main">
       <div className="profile-container flex">
         <div className="profile-left-box flex">
           <img
