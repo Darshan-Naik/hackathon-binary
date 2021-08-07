@@ -7,6 +7,9 @@ import MentorLogin from "../Components/MentorLogin/MentorLogin";
 import MentorRegister from "../Components/MentorRegister/MentorRegister";
 import Navbar from "../Components/Navbar/Navbar";
 import Register from "../Components/Register/Register";
+import News from "../Components/News/News";
+import Articles from "../Components/Articles/Articles";
+import Blogs from "../Components/Blogs/Blogs"
 import UserProfile from "../Components/UserProfile/UserProfile";
 import SearchResult from "../Components/SearchResult/SearchResult";
 import VideoConference from "../Components/VideoConference/VideoConference";
@@ -132,6 +135,15 @@ const handleCall = (caller,name) => {
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="/blog">
+          <Blogs />
+        </Route>
+        <Route exact path="/news">
+          <News />
+        </Route>
+        <Route exact path="/articles">
+          <Articles />
         </Route>
         <Route exact path="/register">
           <Register />
