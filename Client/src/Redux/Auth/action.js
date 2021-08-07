@@ -3,6 +3,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  MENTOR,
   REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
@@ -11,6 +12,12 @@ import {
 export const loginRequest = (payload) => {
   return {
     type: LOGIN_REQUEST,
+    payload,
+  };
+};
+export const updateMentor = (payload) => {
+  return {
+    type: MENTOR,
     payload,
   };
 };

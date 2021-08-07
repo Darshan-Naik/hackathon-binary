@@ -19,14 +19,10 @@ socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
 });
 
+
 io.on("connection", (socket) => {
-    console.log(socket.id)
-    
 	socket.emit("me", socket.id)
 
-    socket.on("join", (id) => {
-      socket.id = id;
-    });
   
 	socket.on("disconnect", () => {
 		socket.broadcast.emit("callEnded")

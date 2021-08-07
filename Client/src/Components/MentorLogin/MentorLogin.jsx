@@ -6,6 +6,7 @@ import {
   loginFailure,
   loginRequest,
   loginSuccess,
+  updateMentor,
 } from "../../Redux/Auth/action";
 import "../../Styles/Login/Login.css";
 const initState = {
@@ -40,7 +41,10 @@ function MentorLogin() {
       data,
     };
     axios(requestParam)
-      .then((response) => dispatch(loginSuccess(response.data.data[0])))
+      .then((response) =>{
+         dispatch(loginSuccess(response.data.data[0]))
+          dispatch(updateMentor(true));
+        })
       .catch((err) => dispatch(loginFailure(err)));
   };
 

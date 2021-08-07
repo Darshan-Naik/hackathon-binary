@@ -6,7 +6,7 @@ import "../../Styles/Navbar/Navbar.css";
 
 function Navbar() {
   const history = useHistory();
-  const { isAuth, user } = useSelector((state) => state.auth);
+  const { isAuth, user,mentor } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const handleSignOut = () => {
     dispatch(logOut());
@@ -23,7 +23,15 @@ function Navbar() {
         <Link to="/articles">Articles</Link>
       </div>
       <div className="login-button-container flex">
-       {isAuth && <Link to={"/profile/user/"+user._id}>{user.name}</Link>}
+        {isAuth && (
+          <Link
+            to={
+              mentor ? "/profile/mentor/" + user._id : "/profile/user/" + user._id
+            }
+          >
+            {user.name}
+          </Link>
+        )}
         {isAuth ? (
           <button onClick={handleSignOut}>Sign Out</button>
         ) : (

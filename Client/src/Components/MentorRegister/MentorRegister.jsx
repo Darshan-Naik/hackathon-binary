@@ -6,6 +6,7 @@ import {
   registerFailure,
   registerRequest,
   registerSuccess,
+  updateMentor,
 } from "../../Redux/Auth/action";
 import { Link } from "react-router-dom";
 const initState = {
@@ -42,7 +43,11 @@ function MentorRegister() {
       data,
     };
     axios(requestParam)
-      .then((response) => dispatch(registerSuccess(response.data.data)))
+      .then((response) =>{
+        
+        dispatch(registerSuccess(response.data))
+        dispatch(updateMentor(true));
+      })
       .catch((err) => dispatch(registerFailure(err)));
   };
 
