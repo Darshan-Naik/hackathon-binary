@@ -6,6 +6,7 @@ import MentorLogin from "../Components/MentorLogin/MentorLogin";
 import MentorRegister from "../Components/MentorRegister/MentorRegister";
 import Navbar from "../Components/Navbar/Navbar";
 import Register from "../Components/Register/Register";
+import UserProfile from "../Components/UserProfile/UserProfile";
 import SearchResult from "../Components/SearchResult/SearchResult";
 function Router() {
   return (
@@ -29,6 +30,10 @@ function Router() {
         </Route>
         <Route exact path="/mentor-register">
           <MentorRegister />
+        </Route>
+        <Route exact path="/user-profile">
+          <Navbar />
+          <UserProfile />
         </Route>
       </Switch>
     </>
