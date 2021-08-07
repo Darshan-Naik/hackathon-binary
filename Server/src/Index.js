@@ -7,16 +7,16 @@ const connect = require("./Config/db");
 
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
-	cors: {
-		origin: "http://localhost:3000",
-		methods: [ "GET", "POST" ]
-	}
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
 })
 
 const socket = require("socket.io-client")("http://localhost:8000");
 
 socket.on("connect_error", (err) => {
-  console.log(`connect_error due to ${err.message}`);
+    console.log(`connect_error due to ${err.message}`);
 });
 
 io.on("connection", (socket) => {
@@ -32,13 +32,13 @@ io.on("connection", (socket) => {
 		socket.broadcast.emit("callEnded")
 	})
 
-	socket.on("callUser", (data) => {
-		io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
-	})
+    socket.on("callUser", (data) => {
+        io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
+    })
 
-	socket.on("answerCall", (data) => {
-		io.to(data.to).emit("callAccepted", data.signal)
-	})
+    socket.on("answerCall", (data) => {
+        io.to(data.to).emit("callAccepted", data.signal)
+    })
 })
 
 const start = async () => {

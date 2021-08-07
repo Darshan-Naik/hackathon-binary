@@ -6,7 +6,7 @@
 
 .profile-container {
   width: 90%;
-  padding:50px 20px;
+  padding: 50px 20px;
   max-width: 1300px;
   margin: auto;
   align-items: flex-start;
@@ -91,7 +91,7 @@
   font-size: 14px;
   flex: 1;
 }
-.profile-button-main{
+.profile-button-main {
   margin-bottom: 18px;
 }
 .profile-heading {
@@ -162,4 +162,7 @@
 }
 .contact p {
   width: 100px;
+}
+.inactiveStar svg #Shape {
+  fill: var(--secondary-icon);
 }

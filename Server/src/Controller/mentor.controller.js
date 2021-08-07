@@ -21,4 +21,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:id', async (req, res) => {
+    try {
+
+        let mentor = await Mentor.findById(req.params.id).lean().exec();
+
+        return res.status(200).json({ data: mentor });
+
+    } catch (error) {
+        return res.status(500).json({ status: "Failed", message: "Something went wrong." });
+    }
+})
+
 module.exports = router;
