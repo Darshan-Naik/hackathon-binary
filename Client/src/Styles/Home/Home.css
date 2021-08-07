@@ -3,11 +3,10 @@
   background-color: var(--secondary-background-2);
 }
 .banner-box {
-  height: 35vh;
+  height: 30vh;
   overflow: hidden;
   padding: 100px auto;
   background-color: var(--secondary-background-1);
-  margin: 15px 0;
 }
 .banner-box img {
   height: 100%;
@@ -17,7 +16,8 @@
   margin: 20px;
 }
 .main-search-box {
-  width: 40%;
+  width: 55%;
+  max-width: 700px;
   padding: 20px 30px;
   min-width: 350px;
   background-color: var(--secondary-background-1);
@@ -100,7 +100,7 @@
 }
 .career-card {
   width: 180px;
-  height: 250px;
+  height: 270px;
   background-color: var(--secondary-background-1);
   border: 2px solid var(--primary-3);
   margin: 10px;
@@ -108,8 +108,82 @@
   box-shadow: 0px 0px 25px var(--shadow-2);
   transition: all 0.3s ease;
   cursor: pointer;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .career-card:hover {
   transform: scale(1.05);
   border: 2px solid var(--primary-1);
+}
+.career-card img{
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+.career-card small{
+    position: relative;
+    top: 10px;
+    font-size: 12px;
+}
+.career-card span{
+    font-size: 12px;
+}
+.career-card h2{
+    font-size: 20px;
+    font-weight: 500;
+}
+.career-card-stars{
+    margin: 3px;
+    margin-bottom: 0;
+}
+.career-card-stars svg{
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    fill: #F4CD1E;
+}
+.inactiveStar svg #Shape{
+    fill: var(--secondary-icon);
+}
+/* ----------- */
+
+
+.progress {
+    position: relative;   
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
+    top: 40%;
+    left: 28%;
+    margin: -80px 0 0 -80px;
+}
+
+.progress-circle {
+  transform: rotate(-90deg);
+	margin-top: -40px;
+}
+
+.progress-circle-back {
+	fill: none; 
+	stroke: #D2D2D2;
+	stroke-width:10px;
+}
+
+.progress-circle-prog {
+	fill: none; 
+	stroke: #7E3451;
+	stroke-width: 10px;  
+	stroke-dasharray: 0 999;    
+	stroke-dashoffset: 0px;
+    transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.progress-text {
+	position: absolute;
+	top: 15px;
+    left: 28px;
+	text-align: center;
+    font-size: 14px;
 }
