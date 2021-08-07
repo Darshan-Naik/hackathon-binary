@@ -46,10 +46,10 @@ button,
 textarea {
   outline: none;
 }
-button{
+button {
   cursor: pointer;
 }
-svg{
+svg {
   fill: var(--primary-icon);
   stroke: var(--primary-icon);
 }
