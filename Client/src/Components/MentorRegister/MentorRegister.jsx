@@ -42,7 +42,7 @@ function MentorRegister() {
       data,
     };
     axios(requestParam)
-      .then((response) => dispatch(registerSuccess(response)))
+      .then((response) => dispatch(registerSuccess(response.data.data)))
       .catch((err) => dispatch(registerFailure(err)));
   };
 

@@ -3,6 +3,7 @@ import {
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
@@ -70,7 +71,17 @@ export const authReducer = (state = init, { type, payload }) => {
       saveData("user", updatedSate);
       return updatedSate;
     }
-
+    case LOGOUT: {
+      const updatedSate = {
+        isAuth: false,
+        user: {},
+        isError: false,
+        isLoading: false,
+        errorMessage: "",
+      };
+      saveData("user", updatedSate);
+      return updatedSate;
+    }
     default:
       return state;
   }

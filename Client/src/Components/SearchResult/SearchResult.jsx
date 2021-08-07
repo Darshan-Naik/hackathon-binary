@@ -12,7 +12,18 @@ function SearchResult() {
   const [article, setArticle] = React.useState([]);
   const[mentors, setMentors] = React.useState([]);
   const [currentCategory, setCurrentCategory] = React.useState({});
-  const { name, growth, popularity, icon } = currentCategory;
+  const {
+    name,
+    growth,
+    popularity,
+    icon,
+    description,
+    preference,
+    beginnerSalary,
+    careerTimespan,
+    courseDuration,
+    experienceSalary,
+  } = currentCategory;
 
   const { query } = useParams();
   React.useEffect(() => {
@@ -43,7 +54,7 @@ function SearchResult() {
             console.log(error);
           });
   }, [query]);
-  console.log(mentors)
+
   return (
     <section className="flex result-container">
       <section className="category-result-card-container ">
@@ -60,7 +71,7 @@ function SearchResult() {
               </div>
             ))}
           </div>
-
+          <q>{description}</q>
           <div className="progress">
             <svg
               className="progress-circle"
@@ -70,13 +81,13 @@ function SearchResult() {
             >
               <circle
                 className="progress-circle-back"
-                cx="80"
-                cy="80"
-                r="45"
+                cx="100"
+                cy="100"
+                r="50"
               ></circle>
               <circle
                 style={{
-                  strokeDasharray: `${(growth * (4.64 * 60)) / 100}, 999`,
+                  strokeDasharray: `${(growth * (4.64 * 85)) / 100}, 999`,
                   stroke: `${
                     growth <= 25
                       ? "red"
@@ -88,9 +99,9 @@ function SearchResult() {
                   }`,
                 }}
                 className="progress-circle-prog"
-                cx="80"
-                cy="80"
-                r="45"
+                cx="100"
+                cy="100"
+                r="65"
               ></circle>
             </svg>
             <div className="progress-text">
@@ -98,25 +109,39 @@ function SearchResult() {
               {growth}%
             </div>
           </div>
+
+          <strong>
+            Earnings :{" "}
+            <span>
+              {beginnerSalary} - {experienceSalary} L
+            </span>
+          </strong>
+          <strong>
+            Learning Duration : <span>{courseDuration} Years</span>{" "}
+          </strong>
+          <strong>
+            Preference : <span>{preference} %</span>{" "}
+          </strong>
+          <strong>
+            Career Time-span : <span>{careerTimespan} Years</span>{" "}
+          </strong>
         </div>
       </section>
       <section className="search-result-container scroll">
-        {/* {!blogs.length && !news.length && !article.length ? (
-          <h1>No Result for "{query}" </h1>
-        ) : (
-          <h1>Search Result for "{query}"</h1>
-        )} */}
+        <h1>"{query}"</h1>
+
         {news.map((item) => (
-          <NewsCard key={item._id} {...item} type="news" />
+          <NewsCard key={item._id} {...item} type="News" />
         ))}
         {article.map((item) => (
-          <NewsCard key={item._id} {...item} type="article" />
+          <NewsCard key={item._id} {...item} type="Article" />
         ))}
         {blogs.map((item) => (
-          <NewsCard key={item._id} {...item} type="blogs" />
+          <NewsCard key={item._id} {...item} type="Blogs" />
         ))}
       </section>
       <section className="mentors-container scroll">
+        <h1>"Mentors"</h1>
         {mentors.map((mentor) => (
           <MentorCard key={mentor._id} {...mentor} />
         ))}
