@@ -2,6 +2,17 @@ const express = require('express');
 const Student = require('../Model/student.model');
 const router = express.Router();
 
+router.get('/:id', async (req, res) => {
+    try {
+
+        let student = await Student.findById(req.params.id).lean().exec();
+
+        return res.status(200).json({ data: student });;
+
+    } catch (error) {
+        return res.status(500).json({ status: "Failed", message: "Something went wrong" });
+    }
+})
 
 // To get a student based on the provided email;
 router.post('/login', async (req, res) => {
