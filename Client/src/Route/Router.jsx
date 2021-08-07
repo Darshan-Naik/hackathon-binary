@@ -1,14 +1,17 @@
 import React from "react";
 import { Switch, Route, useHistory } from "react-router-dom";
 import Peer from "simple-peer";
+import Articles from "../Components/Articles/Articles";
+import Blogs from "../Components/Blogs/Blogs";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import MentorLogin from "../Components/MentorLogin/MentorLogin";
 import MentorRegister from "../Components/MentorRegister/MentorRegister";
 import Navbar from "../Components/Navbar/Navbar";
+import News from '../Components/News/News';
 import Register from "../Components/Register/Register";
-import UserProfile from "../Components/UserProfile/UserProfile";
 import SearchResult from "../Components/SearchResult/SearchResult";
+import UserProfile from "../Components/UserProfile/UserProfile";
 import VideoConference from "../Components/VideoConference/VideoConference";
 import { useSelector } from "react-redux";
 
@@ -61,16 +64,10 @@ const callUser = (connect, username) => {
       name: username,
     });
   });
-  peer.on("stream", (stream) => {
-    userVideo.current.srcObject = stream;
-  });
-  socket.on("callAccepted", (signal) => {
-    setCallAccepted(true);
-    peer.signal(signal);
-  });
-
   connectionRef.current = peer;
 };
+
+
 const answerCall = () => {
   setCallAccepted(true);
   setReceivingCall(false);
@@ -86,9 +83,9 @@ const answerCall = () => {
     userVideo.current.srcObject = stream;
   });
 
-  peer.signal(callerSignal);
-  connectionRef.current = peer;
-};
+    peer.signal(callerSignal);
+    connectionRef.current = peer;
+  };
 
 const leaveCall = () => {
   setCallState(false);
@@ -146,6 +143,15 @@ const handleCall = (caller,name) => {
         </Route>
         <Route exact path="/profile/:type/:id">
           <UserProfile socket={socket} handleCall={handleCall} />
+        </Route>
+        <Route exact path="/articles">
+          <Articles />
+        </Route>
+        <Route exact path="/blog">
+          <Blogs />
+        </Route>
+        <Route exact path="/news">
+          <News />
         </Route>
       </Switch>
     </>
