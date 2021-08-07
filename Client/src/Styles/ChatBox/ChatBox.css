@@ -1,7 +1,6 @@
 .chat-box-main-container {
     max-width: 270px;
-    min-height: 400px;
-    max-height: 400px;
+    height: 400px;
     width: 100%;
     margin-left: 10px;
     border-radius: 10px 10px 20px 20px;
@@ -72,10 +71,41 @@
 
 .chat-box-message-container {
     flex: 1;
-    height: 100%;
     width: 100%;
     padding: 5px 10px;
     overflow: auto;
+}
+
+.message {
+    width: fit-content;
+    padding: 5px 15px;
+    margin: 8px 0;
+    line-height: 0.9;
+    border-radius: 50px;
+    box-shadow: 0px 0px 10px var(--shadow-5);
+}
+
+.message p {
+    color: inherit;
+    font-size: 14px;
+}
+
+.message small {
+    color: inherit;
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.sent {
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+}
+
+.received {
+    color: var(--white);
+    margin-right: auto;
+    background-color: var(--primary-1);
+    border-bottom-left-radius: 0;
 }
 
 /* Chat Box Input Container */

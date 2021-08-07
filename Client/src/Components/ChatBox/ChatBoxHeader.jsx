@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactComponent as CloseIcon } from '../../Icons/close.svg';
 
-const ChatBoxHeader = ({ name, profilePic }) => {
+const ChatBoxHeader = ({ name, profilePic, setChatBoxVisibility }) => {
     return (
         <div className="chat-box-header-main-container flex">
             <div className="flex">
@@ -12,7 +12,7 @@ const ChatBoxHeader = ({ name, profilePic }) => {
                     <h4>{name}</h4>
                 </div>
             </div>
-            <div className="chat-box-header-icon flex">
+            <div className="chat-box-header-icon flex" onClick={() => setChatBoxVisibility(false)}>
                 <CloseIcon />
             </div>
         </div>
