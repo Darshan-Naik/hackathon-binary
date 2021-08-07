@@ -8,7 +8,15 @@ const mentorSchema = new Schema(
         specialization: [
             { type: String, required: true }
         ],
-        profilePic: { type: String }
+        profilePic: { type: String },
+        company: {type: String, require: true },
+        location: {type: String, require: true},
+        jobTitle: {type: String, require: true},
+        rating: {type: Number, require: true}, 
+        phone: {type: Number, require: true},
+        birthday: {type: String, require: true},
+        address: {type: String, require: true},
+        gender: {type: String, require: true}
     },
     {
         versionKey: false,
