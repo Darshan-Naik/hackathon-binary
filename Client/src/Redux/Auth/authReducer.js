@@ -4,6 +4,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGOUT,
+  MENTOR,
   REGISTER_FAILURE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
@@ -11,6 +12,7 @@ import {
 
 const init = loadData("user") || {
   isAuth: false,
+  mentor : false,
   user: {},
   isError: false,
   isLoading: false,
@@ -78,6 +80,14 @@ export const authReducer = (state = init, { type, payload }) => {
         isError: false,
         isLoading: false,
         errorMessage: "",
+      };
+      saveData("user", updatedSate);
+      return updatedSate;
+    }
+    case MENTOR: {
+      const updatedSate = {
+        ...state,
+        mentor: payload,
       };
       saveData("user", updatedSate);
       return updatedSate;

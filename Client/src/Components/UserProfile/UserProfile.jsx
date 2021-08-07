@@ -35,7 +35,7 @@ function UserProfile({ handleCall }) {
         .get("http://localhost:8000/mentors/" + id)
         .then((response) => {
           setData(response.data.data);
-          console.log(response.data.data.rating);
+          console.log(response.data.data);
         })
         .catch((error) => {
           console.log(error);
@@ -51,6 +51,7 @@ function UserProfile({ handleCall }) {
         });
     }
   }, [type, id]);
+
   return (
     <section className="profile-container-main">
       <div className="profile-container flex">
@@ -63,9 +64,9 @@ function UserProfile({ handleCall }) {
             alt="profilePic"
           />
           <div className="profile-work flex">
-            <small>Work</small>
-            <h2>{company || "Company Name"}</h2>
-            <p>{location || "Location"}</p>
+            <small>Location</small>
+
+            <samp>{location || "Location"}</samp>
           </div>
           <div className="profile-work flex">
             <small>Skills</small>
@@ -107,33 +108,52 @@ function UserProfile({ handleCall }) {
             </div>
           </div>
 
-          <div className="profile-button-main flex">
-            <button className="profile-button flex">
-              <img
-                src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
-                alt="message_logo"
-              />
-              Send message
-            </button>
-            <button
-              className="profile-button flex"
-              onClick={() => handleCall(connect, name)}
-            >
-              <img
-                src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
-                alt="meeting_logo"
-              />
-              Make meeting
-            </button>
+          {id !== userId ? (
+            <div className="profile-button-main flex">
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
+                  alt="message_logo"
+                />
+                Send message
+              </button>
+              <button
+                className="profile-button flex"
+                onClick={() => handleCall(connect, user.name)}
+              >
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
+                  alt="meeting_logo"
+                />
+                Make meeting
+              </button>
 
-            <button className="profile-button flex">
-              <img
-                src={process.env.PUBLIC_URL + "/Images/report_icon.png"}
-                alt="report_logo"
-              />
-              Report user
-            </button>
-          </div>
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/report_icon.png"}
+                  alt="report_logo"
+                />
+                Report user
+              </button>
+            </div>
+          ) : (
+            <div className="profile-button-main flex">
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
+                  alt="message_logo"
+                />
+                Write blog
+              </button>
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
+                  alt="message_logo"
+                />
+                Write article
+              </button>
+            </div>
+          )}
           <div className="line"></div>
           <small>CONTACT INFORMATION</small>
           <div className="contact flex">
