@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import NewsCard from "./NewsCard";
 import "../../Styles/SearchResult/SearchResult.css";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
+import MentorCard from "./MentorCard";
 
 function SearchResult() {
   const [blogs, setBlogs] = React.useState([]);
   const [news, setNews] = React.useState([]);
   const [article, setArticle] = React.useState([]);
+  const[mentors, setMentors] = React.useState([]);
   const [currentCategory, setCurrentCategory] = React.useState({});
   const { name, growth, popularity, icon } = currentCategory;
 
@@ -32,11 +34,19 @@ function SearchResult() {
         .catch((error) => {
           console.log(error);
         });
+        axios
+          .get("http://localhost:8000/mentors?q=" + query)
+          .then((response) => {
+            setMentors(response.data.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
   }, [query]);
-
+  console.log(mentors)
   return (
     <section className="flex result-container">
-      <section className="category-result-card-container">
+      <section className="category-result-card-container ">
         <div className="category-card flex">
           <img src={icon} alt="logo" />
           <h2>{name}</h2>
@@ -90,7 +100,7 @@ function SearchResult() {
           </div>
         </div>
       </section>
-      <section className="search-result-container">
+      <section className="search-result-container scroll">
         {/* {!blogs.length && !news.length && !article.length ? (
           <h1>No Result for "{query}" </h1>
         ) : (
@@ -104,6 +114,11 @@ function SearchResult() {
         ))}
         {blogs.map((item) => (
           <NewsCard key={item._id} {...item} type="blogs" />
+        ))}
+      </section>
+      <section className="mentors-container scroll">
+        {mentors.map((mentor) => (
+          <MentorCard key={mentor._id} {...mentor} />
         ))}
       </section>
     </section>

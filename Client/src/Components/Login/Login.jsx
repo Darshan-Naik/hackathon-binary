@@ -45,35 +45,40 @@ function Login() {
   };
 
   return (
-    <div className="login-container flex">
-      <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
-      <h2>Login</h2>
-      <form action="" onSubmit={handleSubmit}>
-        <div className="login-form-box flex">
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          <button type="submit" className="login-bottom">
-            Login
-          </button>
-        </div>
-      </form>
-      <small>Don't have an account? </small>
-      <Link to="/register">Register</Link>
-    </div>
+    <section className="login-container-main flex">
+      <div className="login-container flex">
+        <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
+        <h2>Login</h2>
+        <form action="" onSubmit={handleSubmit}>
+          <div className="login-form-box flex">
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+            <button type="submit" className="login-bottom">
+              Login
+            </button>
+          </div>
+        </form>
+        <small>Don't have an account? </small>
+        <Link to="/register">Register</Link>
+        <small>
+          Login as a <Link to="/mentor-login">Mentor</Link>{" "}
+        </small>
+      </div>
+    </section>
   );
 }
 

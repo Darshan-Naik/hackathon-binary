@@ -46,43 +46,48 @@ function Register() {
   };
 
   return (
-    <div className="register-container flex">
-      <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
-      <h2>Register</h2>
-      <form action="" onSubmit={handleSubmit}>
-        <div className="register-form-box flex">
-          <input
-            name="name"
-            value={name}
-            type="text"
-            placeholder="Full Name"
-            required
-            onChange={handleChange}
-          />
-          <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Email"
-            required
-            onChange={handleChange}
-          />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Password"
-            required
-            onChange={handleChange}
-          />
-          <button type="submit" className="register-bottom">
-            Register
-          </button>
-        </div>
-      </form>
-      <small>Already have an account? </small>
-      <Link to="/login">Login</Link>
-    </div>
+    <section className="register-container-main flex">
+      <div className="register-container flex">
+        <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
+        <h2>Register</h2>
+        <form action="" onSubmit={handleSubmit}>
+          <div className="register-form-box flex">
+            <input
+              name="name"
+              value={name}
+              type="text"
+              placeholder="Full Name"
+              required
+              onChange={handleChange}
+            />
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              required
+              onChange={handleChange}
+            />
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              required
+              onChange={handleChange}
+            />
+            <button type="submit" className="register-bottom">
+              Register
+            </button>
+          </div>
+        </form>
+        <small>Already have an account? </small>
+        <Link to="/login">Login</Link>
+        <small>
+          Register as a <Link to="/mentor-register">Mentor</Link>{" "}
+        </small>
+      </div>
+    </section>
   );
 }
 
