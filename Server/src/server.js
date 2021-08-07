@@ -9,6 +9,7 @@ const category = require("./Controller/categories.controller");
 const searchController = require("./Controller/search.controller");
 const appointmentController = require("./Controller/appointment.controller");
 const mentorController = require("./Controller/mentor.controller");
+const chatboxController = require('./Controller/chatbox.controller');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/mentor/signup", signUp);
 app.use("/mentor/login", logIn);
 app.use('/mentors', mentorController);
 app.use('/mentor/appointment', appointmentController);
+app.use('/chatbox', chatboxController);
 
 app.use('/students', studentController);
 app.use('/blogs', blogController);

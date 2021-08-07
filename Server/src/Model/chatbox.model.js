@@ -2,16 +2,12 @@ const { model, Schema } = require('mongoose');
 
 const chatBoxModel = new Schema(
     {
-        toId: {
-            type: Schema.Types.ObjectId,
-            ref: 'mentor',
-            required: true
-        },
-        fromId: {
-            type: Schema.Types.ObjectId,
-            ref: 'student',
-            required: true
-        },
+        authors: [
+            {
+                type: String,
+                required: true
+            }
+        ],
         messages: [
             {
                 text: {type: String},
