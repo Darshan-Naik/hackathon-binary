@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import Peer from "simple-peer";
 import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
@@ -10,8 +10,9 @@ import Register from "../Components/Register/Register";
 import UserProfile from "../Components/UserProfile/UserProfile";
 import SearchResult from "../Components/SearchResult/SearchResult";
 import VideoConference from "../Components/VideoConference/VideoConference";
+import { useSelector } from "react-redux";
 
-function Router({socket}) {
+function Router({socket}) { 
 const [callState, setCallState] = React.useState(false);
 const [loadState, setLoadState] = React.useState(false);
 const [stream, setStream] = React.useState();
@@ -24,6 +25,8 @@ const [callEnded, setCallEnded] = React.useState(false);
 const myVideo = React.useRef();
 const userVideo = React.useRef();
 const connectionRef = React.useRef();
+const isAuth = useSelector(store=>store.auth.isAuth) 
+const history = useHistory();
 React.useEffect(() => {
   if (socket && loadState) {
     navigator.mediaDevices
@@ -33,7 +36,8 @@ React.useEffect(() => {
         myVideo.current.srcObject = stream;
       });
     socket.on("callUser", (data) => {
-      console.log("callUser", data);
+      setCallState(true)
+      setCallAccepted(false)
       setReceivingCall(true);
       setCaller(data.from);
       setCallerName(data.name);
@@ -42,6 +46,7 @@ React.useEffect(() => {
   }
 }, [socket, loadState]);
 const callUser = (connect, username) => {
+  setCallEnded(false);
   setCallState(true);
   const peer = new Peer({
     initiator: true,
@@ -68,6 +73,7 @@ const callUser = (connect, username) => {
 };
 const answerCall = () => {
   setCallAccepted(true);
+  setReceivingCall(false);
   const peer = new Peer({
     initiator: false,
     trickle: false,
@@ -85,14 +91,21 @@ const answerCall = () => {
 };
 
 const leaveCall = () => {
-  setCallEnded(true);
   setCallState(false);
+  setCallEnded(true);
   connectionRef.current.destroy();
 };
-
+const rejectCall = () => {
+  setCallState(false);
+   setCallEnded(true);
+};
 const handleCall = (caller,name) => {
-    callUser(caller,name)
+    if (isAuth){
+       callUser(caller, name);
     setCallState(true)
+  } else {
+    history.push("/login");
+  }
 }
 
   return (
@@ -110,6 +123,7 @@ const handleCall = (caller,name) => {
         callerName={callerName}
         answerCall={answerCall}
         callState={callState}
+        rejectCall={rejectCall}
       />
       <Switch>
         <Route exact path="/">

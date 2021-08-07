@@ -114,7 +114,7 @@ function UserProfile({ handleCall }) {
               />
               Send message
             </button>
-            <button className="profile-button flex" onClick={() => handleCall(connect,name)}>
+            <button className="profile-button flex" onClick={() => handleCall(connect,user.name)}>
               <img
                 src={process.env.PUBLIC_URL + "/Images/calender_icon.png"}
                 alt="meeting_logo"
