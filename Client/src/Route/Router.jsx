@@ -28,6 +28,7 @@ function Router() {
           <MentorRegister />
         </Route>
         <Route exact path="/user-profile">
+          <Navbar />
           <UserProfile />
         </Route>
       </Switch>
