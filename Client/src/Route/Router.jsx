@@ -10,9 +10,9 @@ import SearchResult from "../Components/SearchResult/SearchResult";
 function Router() {
   return (
     <>
+      <Navbar />
       <Switch>
         <Route exact path="/">
-          <Navbar />
           <Home />
         </Route>
         <Route exact path="/login">
@@ -22,7 +22,6 @@ function Router() {
           <Register />
         </Route>
         <Route exact path="/search/:query">
-          <Navbar />
           <SearchResult />
         </Route>
         <Route exact path="/mentor-login">

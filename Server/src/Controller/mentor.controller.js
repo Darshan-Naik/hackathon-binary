@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
 
         let query = req.query.q;
 
-        let allMentors = await Mentor.find({}, { specialization: query.toLowerCase() }).lean().exec();
+        let allMentors = await Mentor.find({ specialization: query.toLowerCase() }).lean().exec();
 
         if (allMentors.length === 0) {
             return res.status(401).json({ status: "Error", message: "No mentors in this field." });
