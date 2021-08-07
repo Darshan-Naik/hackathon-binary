@@ -50,7 +50,7 @@ function MentorRegister() {
     <section className="register-container-main flex">
       <div className="register-container flex">
         <img src={process.env.PUBLIC_URL + "/Images/Logo.png"} alt="logo" />
-        <h2>Register</h2>
+        <h2>Register as Mentor</h2>
         <form action="" onSubmit={handleSubmit}>
           <div className="register-form-box flex">
             <input

@@ -31,7 +31,7 @@ function Router() {
         <Route exact path="/mentor-register">
           <MentorRegister />
         </Route>
-        <Route exact path="/user-profile/:id">
+        <Route exact path="/user-profile/:type/:id">
           <UserProfile />
         </Route>
       </Switch>
