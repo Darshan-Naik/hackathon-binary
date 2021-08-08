@@ -4,6 +4,7 @@ const express = require("express")
 const http = require("http")
 
 const connect = require("../Config/db");
+const Mentor = require("../Model/mentor.model.js");
 
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
@@ -22,8 +23,11 @@ socket.on("connect_error", (err) => {
 
 io.on("connection", (socket) => {
     socket.emit("me", socket.id)
-    socket.on("disconnect", () => {
-        socket.broadcast.emit("callEnded")
+    socket.on("disconnect", (socket) => {
+        await Mentor.findOneAndUpdate(
+          { connect: socket.id },
+          { connectStatus: false }
+        );
     })
 
     socket.on("callUser", (data) => {
