@@ -8,6 +8,7 @@ import Home from "../Components/Home/Home";
 import Login from "../Components/Login/Login";
 import MentorLogin from "../Components/MentorLogin/MentorLogin";
 import MentorRegister from "../Components/MentorRegister/MentorRegister";
+import Messenger from '../Components/Messenger/Messenger';
 import Navbar from "../Components/Navbar/Navbar";
 import News from "../Components/News/News";
 import Register from "../Components/Register/Register";
@@ -159,6 +160,9 @@ function Router({ socket }) {
         </Route>
         <Route exact path="/profile/:type/:id">
           <UserProfile socket={socket} handleCall={handleCall} />
+        </Route>
+        <Route exact path='/messenger/:id'>
+          <Messenger />
         </Route>
       </Switch>
     </>
