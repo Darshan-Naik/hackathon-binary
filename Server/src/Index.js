@@ -36,12 +36,12 @@ io.on("connection", (socket) => {
         io.to(data.to).emit("callAccepted", data.signal)
     })
 })
-
+const PORT = process.env.port || "8000";
 const start = async () => {
     await connect();
-    server.listen(8000, () => {
-        console.log(`Listening to port 8000`);
-    })
+    server.listen(PORT, () => {
+      console.log(`Listening to port 8000`);
+    });
     //server.listen(8001, () => console.log("server is running on port 5000"))
 }
 
