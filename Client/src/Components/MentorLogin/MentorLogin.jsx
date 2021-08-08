@@ -6,9 +6,10 @@ import {
   loginFailure,
   loginRequest,
   loginSuccess,
-  updateMentor,
+  updateMentor
 } from "../../Redux/Auth/action";
 import "../../Styles/Login/Login.css";
+import { url } from '../../Utils/serverUrl';
 const initState = {
   email: "",
   password: "",
@@ -35,7 +36,7 @@ function MentorLogin() {
     dispatch(loginRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/mentor/login",
+      url: url + "/mentor/login",
       header: {
         "Content-Type": "application/json",
       },

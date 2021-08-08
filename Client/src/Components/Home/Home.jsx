@@ -1,23 +1,24 @@
-import React from "react";
-import "../../Styles/Home/Home.css";
-import { ReactComponent as SearchIcon } from "../../Icons/search.svg";
 import axios from "axios";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { ReactComponent as SearchIcon } from "../../Icons/search.svg";
 import { getCategory } from "../../Redux/App/action";
+import "../../Styles/Home/Home.css";
+import { url } from '../../Utils/serverUrl';
 import CareerCard from "./CareerCard";
 
-import { useHistory } from "react-router-dom";
 const tips = ["IT", "Programming", "Medical", "Science", "Law"];
 
 function Home() {
   const dispatch = useDispatch();
-  const category = useSelector(state => state.app.category); 
-   
+  const category = useSelector(state => state.app.category);
+
   const history = useHistory()
-  const [search,setSearch] = React.useState("");
+  const [search, setSearch] = React.useState("");
   React.useEffect(() => {
     axios
-      .get("http://localhost:8000/category")
+      .get(url + "/category")
       .then((response) => {
         dispatch(getCategory(response.data.data));
       })
@@ -27,17 +28,16 @@ function Home() {
   }, []);
 
   const handleSearch = () => {
-        history.push(`/search/${search}`);
+    history.push(`/search/${search}`);
   }
-  
+
   return (
     <section className="home-container">
       <div
         className="banner-box flex"
         style={{
-          backgroundImage: `url("${
-            process.env.PUBLIC_URL + "/Images/banner.png"
-          }")`,
+          backgroundImage: `url("${process.env.PUBLIC_URL + "/Images/banner.png"
+            }")`,
         }}
       >
         <div className="flex">

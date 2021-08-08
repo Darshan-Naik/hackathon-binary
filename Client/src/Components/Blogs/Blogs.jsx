@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { url } from '../../Utils/serverUrl';
 import NewsCard from '../SearchResult/NewsCard';
 
 function Blogs() {
@@ -10,7 +11,7 @@ function Blogs() {
 
     const getAllBlogs = () => {
         setBlogsIsLoading(true);
-        return axios.get('http://localhost:8000/blogs')
+        return axios.get(url + '/blogs')
             .then((res) => {
                 setAllBlogs(res.data.data);
                 setBlogsIsLoading(false);

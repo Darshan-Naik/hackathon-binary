@@ -10,6 +10,7 @@ const searchController = require("./Controller/search.controller");
 const appointmentController = require("./Controller/appointment.controller");
 const mentorController = require("./Controller/mentor.controller");
 const chatboxController = require('./Controller/chatbox.controller');
+const organizationController = require("./Controller/organization.controller");
 
 const app = express();
 
@@ -30,9 +31,8 @@ app.use('/chatbox', chatboxController);
 app.use('/students', studentController);
 app.use('/blogs', blogController);
 app.use('/articles', articleController);
-
 app.use('/news', newsController);
-
+app.use('/organizations', organizationController);
 app.use('/search', searchController);
 
 module.exports = app;

@@ -1,9 +1,9 @@
-const app = require("./server.js");
+const app = require("../server.js");
 
 const express = require("express")
 const http = require("http")
 
-const connect = require("./Config/db");
+const connect = require("../Config/db");
 
 let port = 8000;
 let hostname = '0.0.0.0';
@@ -24,12 +24,12 @@ socket.on("connect_error", (err) => {
 
 
 io.on("connection", (socket) => {
-	socket.emit("me", socket.id)
+    socket.emit("me", socket.id)
 
-  
-	socket.on("disconnect", () => {
-		socket.broadcast.emit("callEnded")
-	})
+
+    socket.on("disconnect", () => {
+        socket.broadcast.emit("callEnded")
+    })
 
     socket.on("callUser", (data) => {
         io.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
@@ -40,11 +40,13 @@ io.on("connection", (socket) => {
     })
 })
 
+const port = process.env.PORT || 8000;
+
 const start = async () => {
     console.log(port)
     await connect();
-    server.listen(port, hostname, () => {
-        console.log(`Listening to port at http://${hostname}:${port}/`);
+    server.listen(port, () => {
+        console.log(`Listening to port 8000`);
     })
     //server.listen(8001, () => console.log("server is running on port 5000"))
 }
