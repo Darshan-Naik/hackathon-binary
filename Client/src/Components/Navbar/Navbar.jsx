@@ -1,8 +1,10 @@
+import axios from "axios";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { logOut } from "../../Redux/Auth/action";
 import "../../Styles/Navbar/Navbar.css";
+import { url } from "../../Utils/serverUrl";
 
 function Navbar({ socket }) {
   const history = useHistory();
@@ -10,6 +12,9 @@ function Navbar({ socket }) {
   const { isAuth, user, mentor } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const handleSignOut = () => {
+    axios.patch(url + "/mentors/" + user._id, {
+      connectStatus: false,
+    });
     dispatch(logOut());
   };
 
