@@ -3,7 +3,7 @@ import React from 'react'
 const ChatBoxInput = ({ text, setText, sendMessage }) => {
     return (
         <div className="chat-box-input-container flex">
-            <input value={text} onChange={(e) => setText(e.target.value)} type="text" />
+            <input value={text} onChange={(e) => setText(e.target.value)} type="text" placeholder="Type" />
             <button onClick={sendMessage}>Send</button>
         </div>
     )

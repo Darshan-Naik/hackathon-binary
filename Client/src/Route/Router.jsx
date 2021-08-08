@@ -115,7 +115,7 @@ function Router({ socket }) {
 
   return (
     <>
-      <Navbar />
+      <Navbar socket={socket} />
       <VideoConference
         setLoadState={setLoadState}
         stream={stream}
