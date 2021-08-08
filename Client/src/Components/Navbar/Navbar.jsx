@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { logOut } from "../../Redux/Auth/action";
 import "../../Styles/Navbar/Navbar.css";
 
@@ -14,7 +14,7 @@ function Navbar({ socket }) {
   };
 
   React.useEffect(() => {
-   socket && socket.on("newMessage", (data) => {
+    socket && socket.on("newMessage", (data) => {
       if (data.mentor == user._id) setNewMessage(true);
     });
   }, [socket]);
@@ -30,7 +30,7 @@ function Navbar({ socket }) {
       </div>
       <div className="login-button-container flex">
         {isAuth && (
-          <Link to={"/messenger" + user._id} className={newMessage? "fill" : "no-fill"}>
+          <Link to={"/messenger/" + user._id} className={newMessage ? "fill" : "no-fill"} onClick={() => setNewMessage(false)}>
             {`Messages ${newMessage ? "*" : ""}`}
           </Link>
         )}

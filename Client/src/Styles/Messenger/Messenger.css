@@ -17,7 +17,29 @@
 .chat-list-main-container {
     width: 100%;
     flex-direction: column;
-    background-color: royalblue;
+}
+
+.chat-list-content-box {
+    padding: 10px;
+    justify-content: flex-start;
+    cursor: pointer;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--shadow-5);
+    background-color: var(--primary-background);
+}
+
+.chat-list-user-image-wrapper  img{
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.chat-list-user-details small {
+    font-size: 13px;
+    color: var(--secondary-text);
 }
 
 /* Chat Room Body */

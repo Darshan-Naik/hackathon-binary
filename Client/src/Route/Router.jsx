@@ -162,7 +162,7 @@ function Router({ socket }) {
           <UserProfile socket={socket} handleCall={handleCall} />
         </Route>
         <Route exact path='/messenger/:id'>
-          <Messenger />
+          <Messenger socket={socket} />
         </Route>
       </Switch>
     </>
