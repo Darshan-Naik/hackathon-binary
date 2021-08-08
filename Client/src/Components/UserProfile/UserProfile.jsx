@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import "../../Styles/UserProfile/UserProfile.css";
-import ChatBox from "../ChatBox/ChatBox";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
+import "../../Styles/UserProfile/UserProfile.css";
+import { url } from '../../Utils/serverUrl';
+import ChatBox from "../ChatBox/ChatBox";
 
 function UserProfile({ handleCall }) {
   const [data, setData] = React.useState({});
@@ -35,7 +36,7 @@ function UserProfile({ handleCall }) {
   React.useEffect(() => {
     if (type === "mentor") {
       axios
-        .get("http://localhost:8000/mentors/" + id)
+        .get(url + "/mentors/" + id)
         .then((response) => {
           setData(response.data.data);
           console.log(response.data.data);
@@ -45,7 +46,7 @@ function UserProfile({ handleCall }) {
         });
     } else {
       axios
-        .get("http://localhost:8000/students/" + id)
+        .get(url + "/students/" + id)
         .then((response) => {
           setData(response.data.data);
         })
