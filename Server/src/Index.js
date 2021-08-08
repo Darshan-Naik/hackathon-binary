@@ -5,6 +5,9 @@ const http = require("http")
 
 const connect = require("./Config/db");
 
+let port = 8000;
+let hostname = '0.0.0.0';
+
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
     cors: {
@@ -38,9 +41,10 @@ io.on("connection", (socket) => {
 })
 
 const start = async () => {
+    console.log(port)
     await connect();
-    server.listen(8000, () => {
-        console.log(`Listening to port 8000`);
+    server.listen(port, hostname, () => {
+        console.log(`Listening to port at http://${hostname}:${port}/`);
     })
     //server.listen(8001, () => console.log("server is running on port 5000"))
 }
