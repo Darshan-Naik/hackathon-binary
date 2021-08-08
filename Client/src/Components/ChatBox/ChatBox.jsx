@@ -6,14 +6,14 @@ import ChatBoxHeader from './ChatBoxHeader';
 import ChatBoxInput from './ChatBoxInput';
 import Messages from './Messages';
 
-const ChatBox = ({socket, mentor, student, author, name, profilePic, setChatBoxVisibility }) => {
+const ChatBox = ({ socket, mentor, student, author, name, profilePic, setChatBoxVisibility }) => {
 
     const [text, setText] = useState("");
     const [allMessages, setAllMessages] = useState([]);
     const scroll = React.useRef();
-  React.useEffect(() => {
-    scroll.current.scroll(0, 200000);
-  }, [allMessages]);
+    React.useEffect(() => {
+        scroll.current.scroll(0, 200000);
+    }, [allMessages]);
     const getMessages = () => {
         return axios.get(url + `/chatbox?sender=${student}&receiver=${mentor}`)
             .then((res) => {
@@ -46,24 +46,32 @@ const ChatBox = ({socket, mentor, student, author, name, profilePic, setChatBoxV
     }
 
     useEffect(() => {
+
+        socket && socket.on(`newMessage`, (data) => {
+            getMessages();
+        });
+
+    }, [socket]);
+
+    useEffect(() => {
         getMessages();
     }, [mentor, student])
 
     return (
-      <div className="chat-box-main-container flex">
-        <ChatBoxHeader
-          name={author}
-          profilePic={profilePic}
-          setChatBoxVisibility={setChatBoxVisibility}
-        />
-        <div className="chat-box-message-container scroll" ref={scroll}>
-          {allMessages.length > 0 &&
-            allMessages.map((item) => (
-              <Messages {...item} key={item.id} student={student} />
-            ))}
+        <div className="chat-box-main-container flex">
+            <ChatBoxHeader
+                name={author}
+                profilePic={profilePic}
+                setChatBoxVisibility={setChatBoxVisibility}
+            />
+            <div className="chat-box-message-container scroll" ref={scroll}>
+                {allMessages.length > 0 &&
+                    allMessages.map((item) => (
+                        <Messages {...item} key={item.id} student={student} />
+                    ))}
+            </div>
+            <ChatBoxInput text={text} setText={setText} sendMessage={sendMessage} />
         </div>
-        <ChatBoxInput text={text} setText={setText} sendMessage={sendMessage} />
-      </div>
     );
 }
 
