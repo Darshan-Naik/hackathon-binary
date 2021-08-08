@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import '../../Styles/ChatBox/ChatBox.css';
+import { url } from '../../Utils/serverUrl';
 import ChatBoxHeader from './ChatBoxHeader';
 import ChatBoxInput from './ChatBoxInput';
 import Messages from './Messages';
@@ -11,7 +12,7 @@ const ChatBox = ({ mentor, student, author, name, profilePic, setChatBoxVisibili
     const [allMessages, setAllMessages] = useState([]);
 
     const getMessages = () => {
-        return axios.get(`http://localhost:8000/chatbox?sender=${student}&receiver=${mentor}`)
+        return axios.get(url + `/chatbox?sender=${student}&receiver=${mentor}`)
             .then((res) => {
                 setAllMessages(res.data.data);
                 setText("");
@@ -31,7 +32,7 @@ const ChatBox = ({ mentor, student, author, name, profilePic, setChatBoxVisibili
             text
         }
 
-        axios.post('http://localhost:8000/chatbox', payload)
+        axios.post(url + '/chatbox', payload)
             .then((res) => {
                 getMessages();
             })
