@@ -1,4 +1,4 @@
-const url = `https://binary-hackathon.herokuapp.com`
+const url = `https://binary-hackathon.herokuapp.com`;
 
 export { url }
 
