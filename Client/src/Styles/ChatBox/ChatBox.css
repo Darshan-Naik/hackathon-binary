@@ -1,135 +1,138 @@
 .chat-box-main-container {
-    max-width: 270px;
-    height: 400px;
-    width: 100%;
-    margin-left: 10px;
-    border-radius: 10px 10px 20px 20px;
-    flex-direction: column;
-    position: absolute;
-    bottom: 20px;
-    right: 100px;
-    border: 1px solid black;
-    border-bottom: none;
-    background-color:  var(--primary-background);
-    box-shadow: 0 12px 18px 0 var(--shadow-2);
+  max-width: 270px;
+  height: 400px;
+  width: 100%;
+  margin-left: 10px;
+  border-radius: 10px 10px 0 0;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+  border: 1px solid var(--primary-1);
+  border-bottom: none;
+  background-color: var(--primary-background);
+  box-shadow: 0 12px 18px 0 var(--shadow-2);
 }
 
 /* Chat box header container */
 
 .chat-box-header-main-container {
-    width: 100%;
-    padding: 9px;
-    border-bottom: 2px solid var(--shadow-1);
-    justify-content: space-between;
+  width: 100%;
+  padding: 9px;
+  border-bottom: 2px solid var(--shadow-1);
+  justify-content: space-between;
 }
 
 .chat-box-header-image {
-    position: relative;
-    border-radius: 50%;
+  position: relative;
+  border-radius: 50%;
 }
 
-.chat-box-header-image img{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    object-fit: cover;
+.chat-box-header-image img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-.chat-box-user-details{
-    padding:0 5px;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-bottom: 5px;
+.chat-box-user-details {
+  padding: 0 5px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-bottom: 5px;
 }
 
-.chat-box-user-details > h4{
-    font-weight: 600;
-    font-size: 14px;
+.chat-box-user-details > h4 {
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .chat-box-header-icon {
-    padding:0 5px;
-    cursor: pointer;
+  padding: 0 5px;
+  cursor: pointer;
 }
 
-.chat-box-header-icon svg{
- width: 25px;
- height: 25px;
- margin: 3px;
- padding: 2px;
- stroke: var(--black);
- border-radius: 50%;
- transition: all .2s ease-in-out;
+.chat-box-header-icon svg {
+  width: 25px;
+  height: 25px;
+  margin: 3px;
+  padding: 2px;
+  stroke: var(--black);
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
 }
 
-.chat-box-header-icon svg:hover{
-    background-color: var(--secondary-background-2);
+.chat-box-header-icon svg:hover {
+  background-color: var(--secondary-background-2);
 }
 
 /* Message Container */
 
 .chat-box-message-container {
-    flex: 1;
-    width: 100%;
-    padding: 5px 10px;
-    overflow: auto;
+  flex: 1;
+  width: 100%;
+  padding: 5px 10px;
+  overflow: auto;
 }
 
 .message {
-    width: fit-content;
-    padding: 5px 15px;
-    margin: 8px 0;
-    line-height: 0.9;
-    border-radius: 50px;
-    box-shadow: 0px 0px 10px var(--shadow-5);
+  width: fit-content;
+  padding: 5px 15px;
+  margin: 8px 0;
+  line-height: 0.9;
+  border-radius: 50px;
+  box-shadow: 0px 0px 10px var(--shadow-5);
 }
 
 .message p {
-    color: inherit;
-    font-size: 14px;
+  color: inherit;
+  font-size: 14px;
 }
 
 .message small {
-    color: inherit;
-    font-size: 10px;
-    font-weight: 400;
+  color: inherit;
+  font-size: 10px;
+  font-weight: 400;
 }
 
 .sent {
-    margin-left: auto;
-    border-bottom-right-radius: 0;
+  margin-left: auto;
+  border-bottom-right-radius: 0;
 }
 
 .received {
-    color: var(--white);
-    margin-right: auto;
-    background-color: var(--primary-1);
-    border-bottom-left-radius: 0;
+  color: var(--white);
+  margin-right: auto;
+  background-color: var(--primary-1);
+  border-bottom-left-radius: 0;
 }
 
 /* Chat Box Input Container */
 
 .chat-box-input-container {
-    width: 100%;
-    overflow: hidden;
-    border-radius: 500px;
-    border: 1px solid var(--shadow-8);
+  width: 95%;
+  padding-left:15px;
+  border-radius: 500px;
+  border: 1px solid var(--primary-1);
+  margin: 10px 0;
+  box-shadow: 0 12px 18px 0 var(--shadow-2);
 }
 
 .chat-box-input-container input {
-    padding: 7px 15px;
-    font-size: 15px;
-    border: none;
-    transition: all .2s ease-in-out;
+    width: 100px;
+  padding: 7px;
+  flex: 1;
+  font-size: 15px;
+  border: none;
+  transition: all 0.2s ease-in-out;
 }
 
 .chat-box-input-container button {
-    /* flex-grow: 1; */
-    height: 100%;
-    padding: 7px 12px;
-    outline: none;
-    border: none;
-    color: var(--white);
-    background-color: var(--primary-1);
+  padding: 7px 12px;
+    border-radius: 500px;
+  outline: none;
+  border: none;
+  color: var(--white);
+  background-color: var(--primary-1);
 }

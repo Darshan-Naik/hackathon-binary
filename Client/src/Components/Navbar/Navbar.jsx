@@ -4,14 +4,20 @@ import { useHistory, Link } from "react-router-dom";
 import { logOut } from "../../Redux/Auth/action";
 import "../../Styles/Navbar/Navbar.css";
 
-function Navbar() {
+function Navbar({ socket }) {
   const history = useHistory();
-  const { isAuth, user,mentor } = useSelector((state) => state.auth);
+  const [newMessage, setNewMessage] = React.useState(false);
+  const { isAuth, user, mentor } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const handleSignOut = () => {
     dispatch(logOut());
   };
-  console.log(isAuth, user);
+
+  React.useEffect(() => {
+   socket && socket.on("newMessage", (data) => {
+      if (data.mentor == user._id) setNewMessage(true);
+    });
+  }, [socket]);
   return (
     <nav className="flex nav-container">
       <div className="logo-container" onClick={() => history.push("/")}>
@@ -24,9 +30,16 @@ function Navbar() {
       </div>
       <div className="login-button-container flex">
         {isAuth && (
+          <Link to={"/messenger" + user._id} className={newMessage? "fill" : "no-fill"}>
+            {`Messages ${newMessage ? "*" : ""}`}
+          </Link>
+        )}
+        {isAuth && (
           <Link
             to={
-              mentor ? "/profile/mentor/" + user._id : "/profile/user/" + user._id
+              mentor
+                ? "/profile/mentor/" + user._id
+                : "/profile/user/" + user._id
             }
           >
             {user.name}

@@ -25,8 +25,6 @@ socket.on("connect_error", (err) => {
 
 io.on("connection", (socket) => {
     socket.emit("me", socket.id)
-
-
     socket.on("disconnect", () => {
         socket.broadcast.emit("callEnded")
     })
@@ -38,6 +36,9 @@ io.on("connection", (socket) => {
     socket.on("answerCall", (data) => {
         io.to(data.to).emit("callAccepted", data.signal)
     })
+    socket.on("message", (data) => {
+       socket.broadcast.emit("newMessage", data);
+    });
 })
 
 const port = process.env.PORT || 8000;
