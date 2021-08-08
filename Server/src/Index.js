@@ -36,7 +36,8 @@ io.on("connection", (socket) => {
         io.to(data.to).emit("callAccepted", data.signal)
     })
 })
-const PORT = process.env.port || "8000";
+const PORT = process.env.PORT || "8000";
+
 const start = async () => {
     await connect();
     server.listen(PORT, () => {
