@@ -1,9 +1,9 @@
-const app = require("./server.js");
+const app = require("./src/server.js");
 
 const express = require("express")
 const http = require("http")
 
-const connect = require("./Config/db");
+const connect = require("./src/Config/db");
 
 const server = http.createServer(app)
 const io = require("socket.io")(server, {
