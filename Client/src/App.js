@@ -9,12 +9,9 @@ import { url } from './Utils/serverUrl';
 function App() {
   const { isAuth, user } = useSelector((state) => state.auth);
   const [client, setClient] = React.useState(null);
-
   React.useEffect(() => {
     if (isAuth) {
       const socket = io.connect(url);
-
-
       socket.on("connect", (id) => {
         setClient(socket);
       });

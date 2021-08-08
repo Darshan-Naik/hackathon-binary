@@ -41,3 +41,7 @@
   padding: 5px 10px;
    border-radius: 4px;
 }
+.fill{
+  background-color: var(--primary-1);
+  color: var(--white)!important;
+}
