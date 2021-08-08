@@ -11,7 +11,7 @@ const initState = {
   category: "",
   body: "",
 };
-function BlogPost({ setBlogBoxVisibility }) {
+function ArticlePost({ setArticleBoxVisibility }) {
   const [blog, setBlog] = React.useState(initState);
   const user = useSelector((state) => state.auth.user);
   const { profilePic, name, _id } = user;
@@ -29,7 +29,7 @@ function BlogPost({ setBlogBoxVisibility }) {
   const handleSubmit = () => {
     const requestParam = {
       method: "post",
-      url: url + "/blogs",
+      url: url + "/articles",
       header: {
         "Content-Type": "application/json",
       },
@@ -55,7 +55,7 @@ function BlogPost({ setBlogBoxVisibility }) {
             alt="profile_pic"
           />
           <p>{name || "userName"}</p>
-          <CloseIcon onClick={() => setBlogBoxVisibility(false)} />
+          <CloseIcon onClick={() => setArticleBoxVisibility(false)} />
         </div>
         <input
           className="blog-post-form-box"
@@ -76,7 +76,7 @@ function BlogPost({ setBlogBoxVisibility }) {
         <textarea
           name="body"
           value={body}
-          placeholder="Write blog..."
+          placeholder="Write article..."
           onChange={handleChange}
         ></textarea>
 
@@ -88,4 +88,4 @@ function BlogPost({ setBlogBoxVisibility }) {
   );
 }
 
-export default BlogPost;
+export default ArticlePost;

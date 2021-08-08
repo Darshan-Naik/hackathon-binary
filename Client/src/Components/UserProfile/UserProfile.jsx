@@ -4,12 +4,16 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
 import "../../Styles/UserProfile/UserProfile.css";
-import { url } from '../../Utils/serverUrl';
+import { url } from "../../Utils/serverUrl";
+import BlogPost from "../BlogPost/BlogPost";
+import ArticlePost from "../ArticlePost/ArticlePost";
 import ChatBox from "../ChatBox/ChatBox";
 
 function UserProfile({ handleCall }) {
   const [data, setData] = React.useState({});
   const [chatBoxVisibility, setChatBoxVisibility] = useState(false);
+  const [blogBoxVisibility, setBlogBoxVisibility] = useState(false);
+  const [articleBoxVisibility, setArticleBoxVisibility] = useState(false);
 
   const user = useSelector((state) => state.auth.user);
   const userId = user._id;
@@ -145,14 +149,20 @@ function UserProfile({ handleCall }) {
             </div>
           ) : (
             <div className="profile-button-main flex">
-              <button className="profile-button flex">
+              <button
+                className="profile-button flex"
+                onClick={() => setBlogBoxVisibility(!blogBoxVisibility)}
+              >
                 <img
                   src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
                   alt="message_logo"
                 />
                 Write blog
               </button>
-              <button className="profile-button flex">
+              <button
+                className="profile-button flex"
+                onClick={() => setArticleBoxVisibility(!articleBoxVisibility)}
+              >
                 <img
                   src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
                   alt="message_logo"
@@ -196,6 +206,12 @@ function UserProfile({ handleCall }) {
           profilePic={profilePic}
           setChatBoxVisibility={setChatBoxVisibility}
         />
+      )}
+      {blogBoxVisibility && (
+        <BlogPost setBlogBoxVisibility={setBlogBoxVisibility} />
+      )}
+      {articleBoxVisibility && (
+        <ArticlePost setArticleBoxVisibility={setArticleBoxVisibility} />
       )}
     </section>
   );

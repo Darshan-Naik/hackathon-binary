@@ -1,4 +1,80 @@
 .blog-post-main-container {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
 }
 .blog-post-box {
+  z-index: 10;
+  background-color: var(--primary-background);
+  padding: 20px;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 30%;
+  height: 80%;
+  border-radius: 15px;
+  border: 1px solid var(--primary-1);
+  box-shadow: 0px 0px 50px var(--shadow-8);
+}
+.blog-post-box input {
+  border: none;
+  border: 2px solid var(--primary-3);
+  width: 100%;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+  transition: all 0.3s;
+}
+.blog-post-box input::placeholder {
+  color: var(--secondary-text);
+}
+.blog-post-box input:focus {
+  border: 2px solid var(--primary-1);
+  box-shadow: 0px 0px 10px var(--primary-shadow);
+}
+.blog-post-box textarea {
+  flex: 1;
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--primary-3);
+  border-radius: 5px;
+}
+.blog-post-box textarea::placeholder {
+  color: var(--secondary-text);
+}
+.blog-post-box textarea:focus {
+  border: 2px solid var(--primary-1);
+  box-shadow: 0px 0px 10px var(--primary-shadow);
+}
+.blog-post-header {
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1p solid var(--secondary-text);
+  margin-bottom: 10px;
+}
+.blog-post-header img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.blog-post-header > p {
+  color: var(--primary-1);
+  font-weight: 700;
+}
+.blog-post-header svg {
+  cursor: pointer;
+}
+.blog-post-btn {
+  width: 100%;
+  height: 40px;
+  margin-top: 25px;
+  border-radius: 4px;
+  border: none;
+  color: var(--white);
+  background: var(--primary-1);
+  box-shadow: 0px 0px 10px var(--primary-shadow);
 }
