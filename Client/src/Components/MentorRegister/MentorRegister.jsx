@@ -1,14 +1,15 @@
-import React from "react";
-import "../../Styles/Register/Register.css";
 import axios from "axios";
+import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   registerFailure,
   registerRequest,
   registerSuccess,
-  updateMentor,
+  updateMentor
 } from "../../Redux/Auth/action";
-import { Link } from "react-router-dom";
+import "../../Styles/Register/Register.css";
+import { url } from '../../Utils/serverUrl';
 const initState = {
   name: "",
   email: "",
@@ -36,15 +37,15 @@ function MentorRegister() {
     dispatch(registerRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/mentor/signup",
+      url: url + "/mentor/signup",
       header: {
         "Content-Type": "application/json",
       },
       data,
     };
     axios(requestParam)
-      .then((response) =>{
-        
+      .then((response) => {
+
         dispatch(registerSuccess(response.data))
         dispatch(updateMentor(true));
       })
