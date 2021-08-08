@@ -4,6 +4,7 @@ const studentSchema = new Schema(
   {
     name: { type: String, required: true },
     connect: { type: String },
+    connectStatus: { type: Boolean },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true, minLength: 6 },
     interest: [{ type: String }],

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
 import "./App.css";
 import Router from "./Route/Router";
-import { url } from './Utils/serverUrl';
+import { url } from "./Utils/serverUrl";
 
 function App() {
   const { isAuth, user } = useSelector((state) => state.auth);
@@ -16,7 +16,10 @@ function App() {
         setClient(socket);
       });
       socket.on("me", (id) => {
-        axios.patch(url + "/mentors/" + user._id, { connect: id });
+        axios.patch(url + "/mentors/" + user._id, {
+          connect: id,
+          connectStatus: true,
+        });
       });
     }
   }, [isAuth]);

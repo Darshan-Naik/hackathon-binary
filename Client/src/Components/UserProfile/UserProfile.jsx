@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
 import "../../Styles/UserProfile/UserProfile.css";
 import { url } from "../../Utils/serverUrl";
@@ -17,7 +17,7 @@ function UserProfile({socket, handleCall }) {
 
   const user = useSelector((state) => state.auth.user);
   const userId = user._id;
-
+  const history = useHistory();
   const {
     profilePic,
     company,
@@ -33,6 +33,7 @@ function UserProfile({socket, handleCall }) {
     gender,
     _id,
     connect,
+    connectStatus,
   } = data;
   const handleNewCall =()=>{
     if (type === "mentor") {
@@ -80,6 +81,13 @@ function UserProfile({socket, handleCall }) {
         });
     }
   }, [type, id]);
+  const handleChatBox =()=>{
+   if (userId){
+      setChatBoxVisibility(!chatBoxVisibility);
+    } else {
+      history.push("/login")
+    }
+  }
 
   return (
     <section className="profile-container-main">
@@ -139,17 +147,18 @@ function UserProfile({socket, handleCall }) {
 
           {id !== userId ? (
             <div className="profile-button-main flex">
-              <button
-                className="profile-button flex"
-                onClick={() => setChatBoxVisibility(!chatBoxVisibility)}
-              >
+              <button className="profile-button flex" onClick={handleChatBox}>
                 <img
                   src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
                   alt="message_logo"
                 />
                 Send message
               </button>
-              <button className="profile-button flex" onClick={handleNewCall}>
+              <button
+                disabled={!connectStatus}
+                className="profile-button flex"
+                onClick={handleNewCall}
+              >
                 <img
                   src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
                   alt="meeting_logo"

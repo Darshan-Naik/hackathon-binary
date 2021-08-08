@@ -4,6 +4,7 @@ const mentorSchema = new Schema(
   {
     name: { type: String, require: true },
     connect: { type: String },
+    connectStatus : {type:Boolean},
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true, minLength: 6 },
     specialization: [{ type: String, required: true }],
