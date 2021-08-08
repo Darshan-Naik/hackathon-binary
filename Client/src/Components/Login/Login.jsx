@@ -5,9 +5,10 @@ import { Link, Redirect } from "react-router-dom";
 import {
   loginFailure,
   loginRequest,
-  loginSuccess,
+  loginSuccess
 } from "../../Redux/Auth/action";
 import "../../Styles/Login/Login.css";
+import { url } from '../../Utils/serverUrl';
 const initState = {
   email: "",
   password: "",
@@ -34,7 +35,7 @@ function Login() {
     dispatch(loginRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/students/login",
+      url: url + "/students/login",
       header: {
         "Content-Type": "application/json",
       },

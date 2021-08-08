@@ -1,16 +1,17 @@
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
-import NewsCard from "./NewsCard";
-import "../../Styles/SearchResult/SearchResult.css";
 import { ReactComponent as StarIcon } from "../../Icons/star.svg";
+import "../../Styles/SearchResult/SearchResult.css";
+import { url } from '../../Utils/serverUrl';
 import MentorCard from "./MentorCard";
+import NewsCard from "./NewsCard";
 
 function SearchResult() {
   const [blogs, setBlogs] = React.useState([]);
   const [news, setNews] = React.useState([]);
   const [article, setArticle] = React.useState([]);
-  const[mentors, setMentors] = React.useState([]);
+  const [mentors, setMentors] = React.useState([]);
   const [currentCategory, setCurrentCategory] = React.useState({});
   const {
     name,
@@ -28,7 +29,7 @@ function SearchResult() {
   const { query } = useParams();
   React.useEffect(() => {
     axios
-      .get("http://localhost:8000/search?q=" + query)
+      .get(url + "/search?q=" + query)
       .then((response) => {
         setBlogs(response.data.blogs);
         setNews(response.data.news);
@@ -37,22 +38,22 @@ function SearchResult() {
       .catch((error) => {
         console.log(error);
       });
-      axios
-        .get("http://localhost:8000/category?q=" + query)
-        .then((response) => {
-          setCurrentCategory(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axios
-          .get("http://localhost:8000/mentors?q=" + query)
-          .then((response) => {
-            setMentors(response.data.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+    axios
+      .get(url + "/category?q=" + query)
+      .then((response) => {
+        setCurrentCategory(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios
+      .get(url + "/mentors?q=" + query)
+      .then((response) => {
+        setMentors(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [query]);
 
   return (
@@ -88,15 +89,14 @@ function SearchResult() {
               <circle
                 style={{
                   strokeDasharray: `${(growth * (4.64 * 85)) / 100}, 999`,
-                  stroke: `${
-                    growth <= 25
+                  stroke: `${growth <= 25
                       ? "red"
                       : growth <= 50
-                      ? "blue"
-                      : growth <= 75
-                      ? "green"
-                      : "yellowGreen"
-                  }`,
+                        ? "blue"
+                        : growth <= 75
+                          ? "green"
+                          : "yellowGreen"
+                    }`,
                 }}
                 className="progress-circle-prog"
                 cx="100"

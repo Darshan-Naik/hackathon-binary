@@ -1,13 +1,14 @@
-import React from "react";
-import "../../Styles/Register/Register.css";
 import axios from "axios";
+import React from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   registerFailure,
   registerRequest,
-  registerSuccess,
+  registerSuccess
 } from "../../Redux/Auth/action";
-import { Link } from "react-router-dom";
+import "../../Styles/Register/Register.css";
+import { url } from '../../Utils/serverUrl';
 const initState = {
   name: "",
   email: "",
@@ -35,7 +36,7 @@ function Register() {
     dispatch(registerRequest());
     const requestParam = {
       method: "post",
-      url: "http://localhost:8000/students/signup",
+      url: url + "/students/signup",
       header: {
         "Content-Type": "application/json",
       },

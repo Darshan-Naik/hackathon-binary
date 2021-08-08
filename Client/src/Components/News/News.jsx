@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { url } from '../../Utils/serverUrl';
 import NewsCard from '../SearchResult/NewsCard';
 
 function News() {
@@ -10,7 +11,7 @@ function News() {
 
     const getAllNews = () => {
         setNewsIsLoading(true);
-        return axios.get('http://localhost:8000/news')
+        return axios.get(url + '/news')
             .then((res) => {
                 setAllNews(res.data.data);
                 setNewsIsLoading(false);
