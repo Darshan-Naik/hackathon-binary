@@ -12,6 +12,11 @@ router.get("/", async (req, res) => {
 
     return res.status(201).send({ data: toData.messages || [] });
 });
+router.get("/:id", async (req, res) => {
+  let { id } = req.params;
+  const Data = await ChatBox.find({ authors: id },);
+  return res.status(201).send({ data });
+});
 
 router.post("/", async (req, res) => {
 

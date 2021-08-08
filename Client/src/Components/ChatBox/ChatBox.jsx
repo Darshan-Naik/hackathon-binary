@@ -6,11 +6,14 @@ import ChatBoxHeader from './ChatBoxHeader';
 import ChatBoxInput from './ChatBoxInput';
 import Messages from './Messages';
 
-const ChatBox = ({ mentor, student, author, name, profilePic, setChatBoxVisibility }) => {
+const ChatBox = ({socket, mentor, student, author, name, profilePic, setChatBoxVisibility }) => {
 
     const [text, setText] = useState("");
     const [allMessages, setAllMessages] = useState([]);
-
+    const scroll = React.useRef();
+  React.useEffect(() => {
+    scroll.current.scroll(0, 200000);
+  }, [allMessages]);
     const getMessages = () => {
         return axios.get(url + `/chatbox?sender=${student}&receiver=${mentor}`)
             .then((res) => {
@@ -34,6 +37,7 @@ const ChatBox = ({ mentor, student, author, name, profilePic, setChatBoxVisibili
 
         axios.post(url + '/chatbox', payload)
             .then((res) => {
+                socket.emit('message', payload);
                 getMessages();
             })
             .catch((err) => {
@@ -46,18 +50,21 @@ const ChatBox = ({ mentor, student, author, name, profilePic, setChatBoxVisibili
     }, [mentor, student])
 
     return (
-        <div className="chat-box-main-container flex">
-            <ChatBoxHeader name={author} profilePic={profilePic} setChatBoxVisibility={setChatBoxVisibility} />
-            <div className="chat-box-message-container scroll">
-                {
-                    allMessages.length > 0 && (
-                        allMessages.map(item => <Messages {...item} key={item.id} student={student} />)
-                    )
-                }
-            </div>
-            <ChatBoxInput text={text} setText={setText} sendMessage={sendMessage} />
+      <div className="chat-box-main-container flex">
+        <ChatBoxHeader
+          name={author}
+          profilePic={profilePic}
+          setChatBoxVisibility={setChatBoxVisibility}
+        />
+        <div className="chat-box-message-container scroll" ref={scroll}>
+          {allMessages.length > 0 &&
+            allMessages.map((item) => (
+              <Messages {...item} key={item.id} student={student} />
+            ))}
         </div>
-    )
+        <ChatBoxInput text={text} setText={setText} sendMessage={sendMessage} />
+      </div>
+    );
 }
 
 export default ChatBox
