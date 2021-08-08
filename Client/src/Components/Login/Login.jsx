@@ -16,6 +16,7 @@ const initState = {
 
 function Login() {
   const [data, setData] = React.useState(initState);
+  const [error, setError] = React.useState(false);
   const { email, password } = data;
   const isAuth = useSelector((state) => state.auth.isAuth);
   const dispatch = useDispatch();
@@ -42,7 +43,10 @@ function Login() {
     };
     axios(requestParam)
       .then((response) => dispatch(loginSuccess(response.data.data)))
-      .catch((err) => dispatch(loginFailure(err)));
+      .catch((err) => {
+        dispatch(loginFailure(err));
+        setError("Invalid email or password!");
+      });
   };
 
   return isAuth ? (
@@ -70,6 +74,7 @@ function Login() {
               placeholder="Password"
               required
             />
+            <samp className="error">{error}</samp>
             <button type="submit" className="login-bottom">
               Login
             </button>

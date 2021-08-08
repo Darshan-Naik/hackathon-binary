@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { ReactComponent as StarIcon } from "../../Icons/star.svg";
 import "../../Styles/UserProfile/UserProfile.css";
 import { url } from '../../Utils/serverUrl';
 import ChatBox from "../ChatBox/ChatBox";
@@ -38,7 +39,7 @@ function UserProfile({ handleCall }) {
         .get(url + "/mentors/" + id)
         .then((response) => {
           setData(response.data.data);
-          console.log(response);
+          console.log(response.data.data);
         })
         .catch((error) => {
           console.log(error);
@@ -54,6 +55,7 @@ function UserProfile({ handleCall }) {
         });
     }
   }, [type, id]);
+
   return (
     <section className="profile-container-main">
       <div className="profile-container flex">
@@ -66,9 +68,9 @@ function UserProfile({ handleCall }) {
             alt="profilePic"
           />
           <div className="profile-work flex">
-            <small>Work</small>
-            <h2>{company || "Company Name"}</h2>
-            <p>{location || "Location"}</p>
+            <small>Location</small>
+
+            <samp>{location || "Location"}</samp>
           </div>
           <div className="profile-work flex">
             <small>Skills</small>
@@ -98,40 +100,67 @@ function UserProfile({ handleCall }) {
 
           <div className="ranking flex">
             <small>RATING</small>
-            {/* {new Array(5).fill(rating).map((el, i) => (
-              <p
-                key={el + i}
-                className={rating > i ? "activeStar" : "inactiveStar"}
+            <div className="profile-stars flex">
+              {new Array(5).fill(0).map((el, i) => (
+                <p
+                  key={el + i}
+                  className={rating > i ? "activeStar" : "inactiveStar"}
+                >
+                  <StarIcon />
+                </p>
+              ))}
+            </div>
+          </div>
+
+          {id !== userId ? (
+            <div className="profile-button-main flex">
+              <button
+                className="profile-button flex"
+                onClick={() => setChatBoxVisibility(!chatBoxVisibility)}
               >
-                <StarIcon />
-              </p>
-            ))} */}
-          </div>
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
+                  alt="message_logo"
+                />
+                Send message
+              </button>
+              <button
+                className="profile-button flex"
+                onClick={() => handleCall(connect, user.name)}
+              >
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
+                  alt="meeting_logo"
+                />
+                Make meeting
+              </button>
 
-          <div className="profile-button-main flex">
-            <button className="profile-button flex" onClick={() => setChatBoxVisibility(!chatBoxVisibility)}>
-              <img
-                src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
-                alt="message_logo"
-              />
-              Send message
-            </button>
-            <button className="profile-button flex" onClick={() => handleCall(connect, user.name)}>
-              <img
-                src={process.env.PUBLIC_URL + "/Images/calender_icon.png"}
-                alt="meeting_logo"
-              />
-              Make meeting
-            </button>
-
-            <button className="profile-button flex">
-              <img
-                src={process.env.PUBLIC_URL + "/Images/report_icon.png"}
-                alt="report_logo"
-              />
-              Report user
-            </button>
-          </div>
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/report_icon.png"}
+                  alt="report_logo"
+                />
+                Report user
+              </button>
+            </div>
+          ) : (
+            <div className="profile-button-main flex">
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
+                  alt="message_logo"
+                />
+                Write blog
+              </button>
+              <button className="profile-button flex">
+                <img
+                  src={process.env.PUBLIC_URL + "/Images/message_icon.png"}
+                  alt="message_logo"
+                />
+                Write article
+              </button>
+            </div>
+          )}
           <div className="line"></div>
           <small>CONTACT INFORMATION</small>
           <div className="contact flex">
@@ -158,9 +187,16 @@ function UserProfile({ handleCall }) {
           </div>
         </div>
       </div>
-      {
-        chatBoxVisibility && <ChatBox mentor={_id} student={userId} author={name} name={user.name} profilePic={profilePic} setChatBoxVisibility={setChatBoxVisibility} />
-      }
+      {chatBoxVisibility && (
+        <ChatBox
+          mentor={_id}
+          student={userId}
+          author={name}
+          name={user.name}
+          profilePic={profilePic}
+          setChatBoxVisibility={setChatBoxVisibility}
+        />
+      )}
     </section>
   );
 }

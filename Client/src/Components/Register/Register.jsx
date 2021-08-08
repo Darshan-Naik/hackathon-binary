@@ -17,6 +17,7 @@ const initState = {
 
 function Register() {
   const [data, setData] = React.useState(initState);
+  const [error, setError] = React.useState(false);
   const { name, email, password } = data;
 
   const dispatch = useDispatch();
@@ -43,7 +44,10 @@ function Register() {
     };
     axios(requestParam)
       .then((response) => dispatch(registerSuccess(response.data.data)))
-      .catch((err) => dispatch(registerFailure(err)));
+      .catch((err) => {
+        dispatch(registerFailure(err));
+        setError("Password must contain 6 character!");
+      });
   };
 
   return (
@@ -77,6 +81,7 @@ function Register() {
               required
               onChange={handleChange}
             />
+            <samp className="error">{error}</samp>
             <button type="submit" className="register-bottom">
               Register
             </button>
