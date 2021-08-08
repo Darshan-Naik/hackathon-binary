@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { logOut } from "../../Redux/Auth/action";
 import "../../Styles/Navbar/Navbar.css";
+import { url } from "../../Utils/serverUrl";
 
 function Navbar({ socket }) {
   const history = useHistory();
