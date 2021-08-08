@@ -57,13 +57,16 @@
   margin-bottom: 10px;
 }
 .blog-post-header img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
+  padding: 1px;
+  border: 1px solid var(--primary-1);
 }
 .blog-post-header > p {
   color: var(--primary-1);
   font-weight: 700;
+  font-size: 18px;
 }
 .blog-post-header svg {
   cursor: pointer;

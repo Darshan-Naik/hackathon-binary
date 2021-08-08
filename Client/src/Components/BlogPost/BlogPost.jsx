@@ -54,7 +54,7 @@ function BlogPost({ setBlogBoxVisibility }) {
             }
             alt="profile_pic"
           />
-          <p>{name || "userName"}</p>
+          <p>{name.toUpperCase() || "userName"}</p>
           <CloseIcon onClick={() => setBlogBoxVisibility(false)} />
         </div>
         <input
@@ -81,7 +81,7 @@ function BlogPost({ setBlogBoxVisibility }) {
         ></textarea>
 
         <button className="blog-post-btn" onClick={handleSubmit}>
-          Post
+          Post Blog
         </button>
       </div>
     </div>
