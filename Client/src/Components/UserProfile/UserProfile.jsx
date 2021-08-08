@@ -9,7 +9,7 @@ import BlogPost from "../BlogPost/BlogPost";
 import ArticlePost from "../ArticlePost/ArticlePost";
 import ChatBox from "../ChatBox/ChatBox";
 
-function UserProfile({ handleCall }) {
+function UserProfile({socket, handleCall }) {
   const [data, setData] = React.useState({});
   const [chatBoxVisibility, setChatBoxVisibility] = useState(false);
   const [blogBoxVisibility, setBlogBoxVisibility] = useState(false);
@@ -34,7 +34,28 @@ function UserProfile({ handleCall }) {
     _id,
     connect,
   } = data;
+  const handleNewCall =()=>{
+    if (type === "mentor") {
+      axios
+        .get(url + "/mentors/" + id)
+        .then((response) => {
+          handleCall(response.data.data.connect, user.name);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      axios
+        .get(url + "/students/" + id)
+        .then((response) => {
+           handleCall(response.data.data.connect, user.name);
 
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
   const { type, id } = useParams();
 
   React.useEffect(() => {
@@ -128,10 +149,7 @@ function UserProfile({ handleCall }) {
                 />
                 Send message
               </button>
-              <button
-                className="profile-button flex"
-                onClick={() => handleCall(connect, user.name)}
-              >
+              <button className="profile-button flex" onClick={handleNewCall}>
                 <img
                   src={process.env.PUBLIC_URL + "/Images/video_icon.png"}
                   alt="meeting_logo"
@@ -199,6 +217,7 @@ function UserProfile({ handleCall }) {
       </div>
       {chatBoxVisibility && (
         <ChatBox
+          socket={socket}
           mentor={_id}
           student={userId}
           author={name}

@@ -6,12 +6,14 @@ import "../../Styles/SearchResult/SearchResult.css";
 import { url } from '../../Utils/serverUrl';
 import MentorCard from "./MentorCard";
 import NewsCard from "./NewsCard";
+import OrganizationCard from './OrganizationCard';
 
 function SearchResult() {
   const [blogs, setBlogs] = React.useState([]);
   const [news, setNews] = React.useState([]);
   const [article, setArticle] = React.useState([]);
   const [mentors, setMentors] = React.useState([]);
+  const [organization, setOrganization] = React.useState([]);
   const [currentCategory, setCurrentCategory] = React.useState({});
   const {
     name,
@@ -49,7 +51,17 @@ function SearchResult() {
     axios
       .get(url + "/mentors?q=" + query)
       .then((response) => {
+        
         setMentors(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      axios
+      .get(url + "/organizations?q=" + query.toLowerCase())
+      .then((response) => {
+        //console.log(response.data.data)
+        setOrganization(response.data.data);
       })
       .catch((error) => {
         console.log(error);
@@ -144,6 +156,10 @@ function SearchResult() {
         <h1>"Mentors"</h1>
         {mentors.map((mentor) => (
           <MentorCard key={mentor._id} {...mentor} />
+        ))}
+        <h1>"Organization"</h1>
+        {organization.map((el)=>(
+          <OrganizationCard key={el._id} {...el} />
         ))}
       </section>
     </section>
