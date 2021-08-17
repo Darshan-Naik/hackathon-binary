@@ -49,19 +49,19 @@ You can also take the glimpse of our Project,just follow the below steps:
 
 2. Login Page
 
-   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/grow2.png)
+   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/grow2.PNG)
 
 3. Carrier Home Page
 
-   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/grow3.png)
+   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/grow3.PNG)
 
 4. Mentor Profile Page
 
-   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/growProfile.png)
+   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/growProfile.PNG)
 
 5. Messenger Page
 
-   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/growMsg.png)
+   ![Grow More](https://github.com/Darshan-Naik/hackathon-binary/blob/master/Client/public/Images/growMsg.PNG)
 
 <br>
 
