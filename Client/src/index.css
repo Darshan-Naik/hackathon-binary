@@ -53,13 +53,13 @@ svg {
   fill: var(--primary-icon);
   stroke: var(--primary-icon);
 }
-button:disabled{
-  color:var(--primary-3); 
-  background-color:  var(--shadow-5);
+button:disabled {
+  color: var(--white);
+  background-color: var(--shadow-5);
   cursor: not-allowed;
 }
-button:disabled:hover{
-  color:var(--primary-3); 
-  background-color:  var(--shadow-5);
+button:disabled:hover {
+  color: var(--white);
+  background-color: var(--shadow-5);
   cursor: not-allowed;
 }
